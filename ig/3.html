@@ -254,6 +254,11 @@ body.v-lock { overflow: hidden; }
 /* 컴퓨터에서만 글씨 작게 */
 @media (min-width: 1024px) and (pointer: fine) { .ig { --fs: .76 !important; } }
 
+/* 메시지 버튼: 누를 수 있게 보이도록 */
+[data-dm], [data-dm-close] { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.a-btns [data-dm] { transition: background .15s; }
+.a-btns [data-dm]:hover { background: #dbdbdb; }
+.a-btns [data-dm]:active { opacity: .7; }
 /* DM: 방문자 ↔ 관리자 실시간 1:1 (dm/dm.js) */
 .dm { position: fixed; inset: 0; z-index: 30; display: flex; justify-content: center; background: var(--ig-bg, #fff); }
 .dm[hidden] { display: none; }
