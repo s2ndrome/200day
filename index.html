@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>200 Days</title>
+<meta name="description" content="SYNDROME ୨୧ LIA — 200일">
+<link rel="icon" href="img/yujin.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root {
+  --paper: #fbf8f6;
+  --card: #ffffff;
+  --ink: #141214;
+  --mid: #8e8a8d;
+  --hair: #ebe5e2;
+  --ring: linear-gradient(45deg, #feda75, #fa7e1e 30%, #d62976 60%, #962fbf 80%, #4f5bd5);
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --paper: #0e0d0e; --card: #19171a; --ink: #f3eff0; --mid: #8f8a8e; --hair: #2a272b; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; min-height: 100dvh; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+/* 머리말 */
+.hero { text-align: center; padding: calc(56px + env(safe-area-inset-top, 0px)) 16px 36px; }
+.eyebrow { font-size: 11px; letter-spacing: .32em; color: var(--mid); }
+.num { font: 400 clamp(112px, 34vw, 200px)/.82 var(--serif); letter-spacing: -.04em; margin: 18px 0 4px; }
+.num i { font-style: italic; }
+.days { font: italic 400 clamp(26px, 7vw, 36px)/1 var(--serif); }
+.pair { margin-top: 22px; font-size: 12px; letter-spacing: .24em; }
+.pair span { color: #d62976; }
+.hint { margin-top: 10px; font-size: 13px; color: var(--mid); }
+
+/* 모바일: 계정 카드 */
+.list { list-style: none; margin: 0 auto; padding: 0 16px 56px; max-width: 520px; display: grid; gap: 12px; }
+.card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 18px; background: var(--card); border: 1px solid var(--hair); transition: transform .15s ease; -webkit-tap-highlight-color: transparent; }
+.card:active { transform: scale(.98); }
+.ring { width: 64px; height: 64px; border-radius: 50%; padding: 2.5px; background: var(--ring); }
+.ring img, .ring .empty { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--card); object-fit: cover; display: block; background: var(--hair); }
+.card.soon .ring { background: var(--hair); }
+.meta { min-width: 0; }
+.meta small { display: block; font-size: 11px; letter-spacing: .2em; color: var(--mid); }
+.meta b { display: block; margin-top: 3px; font-size: 16px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.meta span { display: block; margin-top: 2px; font-size: 13px; color: var(--mid); }
+.thumbs { display: grid; grid-template-columns: repeat(3, 34px); gap: 2px; border-radius: 6px; overflow: hidden; }
+.thumbs img, .thumbs i { width: 34px; height: 34px; object-fit: cover; display: block; background: var(--hair); }
+
+/* 데스크톱: 세 대의 폰을 나란히 */
+.phones { display: none; }
+@media (min-width: 1180px) {
+  .hero { padding-top: 48px; padding-bottom: 28px; }
+  .num { font-size: 150px; }
+  .hint { display: none; }
+  .list { display: none; }
+  .phones { display: flex; justify-content: center; gap: 40px; padding: 8px 24px 64px; }
+  .phone { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .frame { width: 344px; height: 720px; border-radius: 48px; padding: 12px; background: #141214; box-shadow: 0 30px 60px -30px rgba(40, 20, 30, .45); }
+  .frame iframe { width: 100%; height: 100%; border: 0; border-radius: 37px; background: #fff; display: block; }
+  .phone a { font-size: 12px; letter-spacing: .2em; color: var(--mid); }
+  .phone a:hover { color: var(--ink); }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="eyebrow">D + 200</div>
+  <div class="num">2<i>0</i>0</div>
+  <div class="days">days</div>
+  <div class="pair">SYNDROME <span>୨୧</span> LIA</div>
+  <p class="hint">눌러서 인스타그램을 열어보세요</p>
+</header>
+
+<!-- 계정 목록. 2·3번이 완성되면 class="soon"을 지우고 이름·썸네일을 바꿔 주세요. -->
+<ul class="list">
+  <li><a class="card" href="ig/1.html">
+    <span class="ring"><img src="img/yujin.jpg" alt=""></span>
+    <span class="meta"><small>01</small><b>yujin_official</b><span>유진 (Yujin)</span></span>
+    <span class="thumbs"><img src="https://i.imgur.com/fcbDlEu.jpg" alt="" loading="lazy"><img src="https://i.imgur.com/EuD1tio.jpg" alt="" loading="lazy"><img src="https://i.imgur.com/qs1qgoM.jpg" alt="" loading="lazy"></span>
+  </a></li>
+  <li><a class="card soon" href="ig/2.html">
+    <span class="ring"><span class="empty"></span></span>
+    <span class="meta"><small>02</small><b>account_02</b><span>준비 중</span></span>
+    <span class="thumbs"><i></i><i></i><i></i></span>
+  </a></li>
+  <li><a class="card soon" href="ig/3.html">
+    <span class="ring"><span class="empty"></span></span>
+    <span class="meta"><small>03</small><b>account_03</b><span>준비 중</span></span>
+    <span class="thumbs"><i></i><i></i><i></i></span>
+  </a></li>
+</ul>
+
+<section class="phones" aria-label="인스타그램 3개">
+  <div class="phone"><div class="frame"><iframe data-src="ig/1.html" title="인스타그램 01"></iframe></div><a href="ig/1.html">01 · 크게 보기</a></div>
+  <div class="phone"><div class="frame"><iframe data-src="ig/2.html" title="인스타그램 02"></iframe></div><a href="ig/2.html">02 · 크게 보기</a></div>
+  <div class="phone"><div class="frame"><iframe data-src="ig/3.html" title="인스타그램 03"></iframe></div><a href="ig/3.html">03 · 크게 보기</a></div>
+</section>
+
+<script>
+// 넓은 화면에서만 폰 화면(iframe)을 불러와서 모바일은 가볍게 유지
+(function () {
+  var mq = window.matchMedia('(min-width: 1180px)');
+  function load() {
+    if (!mq.matches) return;
+    document.querySelectorAll('iframe[data-src]').forEach(function (f) { f.src = f.getAttribute('data-src'); f.removeAttribute('data-src'); });
+  }
+  load();
+  if (mq.addEventListener) mq.addEventListener('change', load);
+})();
+</script>
+</body>
+</html>

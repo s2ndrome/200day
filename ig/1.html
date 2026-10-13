@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>yujin_official • Instagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Do+Hyeon&family=Black+Han+Sans&family=Nanum+Pen+Script&family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Myeongjo:wght@700;800&display=swap">
+<style>
+/* ───────── 인스타그램 UI ───────── */
+.ig {
+  --ig-bg: #fff; --ig-ink: #000; --ig-sec: #737373; --ig-line: #dbdbdb; --ig-link: #00376b;
+  --ig-btn: #efefef; --ig-blue: #0095f6; --ig-red: #ff3040; --ig-elev: #fff; --ig-ph: #efefef;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", Helvetica, Arial, sans-serif;
+  background: var(--ig-bg); color: var(--ig-ink);
+  width: 390px; max-width: 100%;
+  -webkit-font-smoothing: antialiased; letter-spacing: -.005em;
+  position: relative; overflow: hidden;
+}
+.ig[data-theme=dark] {
+  --ig-bg: #000; --ig-ink: #f5f5f5; --ig-sec: #a8a8a8; --ig-line: #363636; --ig-link: #e0f1ff;
+  --ig-btn: #363636; --ig-elev: #262626; --ig-ph: #262626;
+}
+.ig svg { display: block; flex: none; }
+.ig .sec { color: var(--ig-sec); }
+.ig .lk { color: var(--ig-link); }
+.ig b { font-weight: 600; }
+.ig .vf, .vf { display: inline-block; vertical-align: -2px; margin-left: 4px; }
+
+/* 상태 표시줄 */
+.sb { display: flex; justify-content: space-between; align-items: center; height: 47px; padding: 12px 26px 0 36px; font: 600 calc(16px * var(--fs, 1))/1 -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif; letter-spacing: -.01em; }
+.sb-r { display: flex; gap: 6px; align-items: center; }
+
+/* 게시물 */
+.p-head { display: flex; align-items: center; gap: 10px; padding: 10px 12px; height: 56px; }
+.av { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block; flex: none; background: var(--ig-ph); }
+.ring { padding: 2px; border-radius: 50%; background: linear-gradient(45deg, #feda75, #fa7e1e 30%, #d62976 60%, #962fbf 80%, #4f5bd5); flex: none; }
+.ring > .av, .ring > .ring-in { border: 2px solid var(--ig-bg); }
+.p-meta { flex: 1; min-width: 0; line-height: 1.25; }
+.p-user { font-size: calc(14px * var(--fs, 1)); font-weight: 600; display: flex; align-items: center; white-space: nowrap; overflow: hidden; }
+.p-user .t { overflow: hidden; text-overflow: ellipsis; }
+.p-sub { font-size: calc(12px * var(--fs, 1)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.follow-btn { background: var(--ig-btn); border-radius: 8px; padding: 0 12px; height: 32px; line-height: 32px; font-size: calc(14px * var(--fs, 1)); font-weight: 600; white-space: nowrap; }
+.p-media { position: relative; width: 100%; background: var(--ig-ph); overflow: hidden; }
+.p-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; }
+.p-count { position: absolute; top: 14px; right: 14px; background: rgba(18,18,18,.7); color: #fff; font-size: calc(12px * var(--fs, 1)); font-weight: 600; padding: 3px 9px; border-radius: 13px; }
+.ph-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--ig-sec); font-size: calc(13px * var(--fs, 1)); }
+.p-act { position: relative; display: flex; align-items: center; height: 46px; padding: 0 12px 0 12px; }
+.p-act-l { display: flex; align-items: center; gap: 14px; }
+.p-act-l .a { display: flex; align-items: center; gap: 5px; font-size: calc(14px * var(--fs, 1)); font-weight: 600; }
+.p-act .sp { flex: 1; }
+.p-dots { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; gap: 4px; }
+.p-dots.row { position: static; transform: none; justify-content: center; padding-top: 12px; }
+.p-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--ig-sec); opacity: .45; }
+.p-dots i.on { background: var(--ig-blue); opacity: 1; }
+.p-body { padding: 0 14px 14px; font-size: calc(14px * var(--fs, 1)); line-height: calc(18px * var(--fs, 1)); }
+.p-body > div + div { margin-top: 5px; }
+.p-likes { display: flex; align-items: center; gap: 6px; }
+.p-likes .av { width: 20px; height: 20px; }
+.p-cap { white-space: pre-wrap; word-break: break-word; }
+.p-time { font-size: calc(12px * var(--fs, 1)); }
+
+/* 댓글 시트 */
+.phone { height: 844px; }
+.phone-bg { position: absolute; inset: 0; }
+.dim { position: absolute; inset: 0; background: rgba(0,0,0,.5); }
+.sheet-wrap { position: absolute; left: 0; right: 0; bottom: 0; display: flex; }
+.sheet-wrap.half { top: 34%; }
+.sheet-wrap.full { top: 54px; }
+.sheet { background: var(--ig-elev); border-radius: 16px 16px 0 0; display: flex; flex-direction: column; width: 100%; }
+.cm-plain .sheet { border-radius: 0; }
+.grab { width: 40px; height: 4px; border-radius: 2px; background: var(--ig-sec); opacity: .5; margin: 8px auto 0; }
+.s-title { text-align: center; font-size: calc(16px * var(--fs, 1)); font-weight: 700; padding: 14px 0 12px; }
+.s-list { flex: 1; min-height: 0; overflow: hidden; padding: 4px 0 8px; }
+.c { display: flex; gap: 12px; padding: 10px 16px 10px 16px; }
+.c.rp { padding-left: 60px; }
+.c .av { width: 34px; height: 34px; }
+.c.rp .av { width: 26px; height: 26px; }
+.c-b { flex: 1; min-width: 0; }
+.c-h { font-size: calc(13px * var(--fs, 1)); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; line-height: calc(16px * var(--fs, 1)); }
+.c-h .vf { margin-left: -2px; }
+.c-t { font-size: calc(14px * var(--fs, 1)); line-height: calc(18px * var(--fs, 1)); margin-top: 2px; white-space: pre-wrap; word-break: break-word; }
+.c-a { display: flex; align-items: center; gap: 14px; margin-top: 6px; font-size: calc(12px * var(--fs, 1)); font-weight: 600; color: var(--ig-sec); }
+.al { position: relative; display: inline-flex; }
+.al .av { width: 16px; height: 16px; }
+.al svg { position: absolute; right: -6px; bottom: -3px; }
+.c-more { display: flex; align-items: center; gap: 12px; margin-top: 12px; font-size: calc(12px * var(--fs, 1)); font-weight: 600; color: var(--ig-sec); }
+.c-more i { width: 24px; height: 1px; background: var(--ig-sec); opacity: .7; }
+.c-l { display: flex; flex-direction: column; align-items: center; gap: 2px; padding-top: 6px; width: 22px; font-size: calc(12px * var(--fs, 1)); color: var(--ig-sec); }
+.s-foot { border-top: 1px solid var(--ig-line); padding: 10px 0 30px; }
+.s-emo { display: flex; justify-content: space-around; padding: 2px 10px 10px; font-size: calc(24px * var(--fs, 1)); line-height: 1; }
+.s-in { display: flex; align-items: center; gap: 12px; padding: 0 16px; }
+.s-in .av { width: 40px; height: 40px; }
+.s-ph { flex: 1; color: var(--ig-sec); font-size: calc(14px * var(--fs, 1)); border: 1px solid var(--ig-line); border-radius: 22px; height: 44px; line-height: calc(42px * var(--fs, 1)); padding: 0 16px; display: flex; justify-content: space-between; align-items: center; overflow: hidden; white-space: nowrap; }
+.s-ph span { overflow: hidden; text-overflow: ellipsis; }
+
+/* 프로필 */
+.acct.phone { display: flex; flex-direction: column; }
+.a-top { display: flex; align-items: center; height: 44px; padding: 0 16px; gap: 6px; }
+.a-un { display: flex; align-items: center; gap: 4px; font-size: calc(22px * var(--fs, 1)); font-weight: 700; letter-spacing: -.02em; min-width: 0; }
+.a-un .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.a-top .sp { flex: 1; }
+.a-ic { display: flex; gap: 22px; }
+.a-row { display: flex; align-items: center; gap: 20px; padding: 10px 16px 0; }
+.a-av { position: relative; flex: none; }
+.a-av .av { width: 86px; height: 86px; }
+.a-av .ring .av { width: 80px; height: 80px; }
+.a-plus { position: absolute; right: -2px; bottom: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--ig-ink); color: var(--ig-bg); border: 3px solid var(--ig-bg); display: flex; align-items: center; justify-content: center; }
+.a-right { flex: 1; min-width: 0; }
+.a-dn { font-size: calc(15px * var(--fs, 1)); font-weight: 600; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.a-stats { display: flex; justify-content: space-between; padding-right: 8px; }
+.a-stats div { display: flex; flex-direction: column; line-height: 1.2; }
+.a-stats b { font-size: calc(17px * var(--fs, 1)); font-weight: 700; }
+.a-stats span { font-size: calc(14px * var(--fs, 1)); }
+.a-bio { padding: 10px 16px 0; font-size: calc(14px * var(--fs, 1)); line-height: calc(18px * var(--fs, 1)); word-break: break-word; }
+.a-bio .bio { white-space: pre-wrap; }
+.a-bio > div + div { margin-top: 2px; }
+.a-link { display: flex; align-items: center; gap: 4px; font-weight: 600; color: var(--ig-link); }
+.a-mutual { display: flex; align-items: center; gap: 8px; margin-top: 8px !important; font-size: calc(13px * var(--fs, 1)); line-height: calc(16px * var(--fs, 1)); }
+.a-btns { display: flex; gap: 6px; padding: 14px 16px 0; }
+.a-btns div { flex: 1; height: 34px; border-radius: 8px; background: var(--ig-btn); font-size: calc(14px * var(--fs, 1)); font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.a-btns div.blue { background: var(--ig-blue); color: #fff; }
+.a-btns div.ico { flex: none; width: 34px; }
+.a-hl { display: flex; gap: 16px; padding: 16px 16px 0; overflow: hidden; }
+.hl { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 64px; flex: none; }
+.hl-c { width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--ig-line); padding: 3px; }
+.hl-c img, .hl-c .hl-new { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: flex; align-items: center; justify-content: center; background: var(--ig-ph); }
+.hl-c .hl-new { background: none; }
+.hl span { font-size: calc(12px * var(--fs, 1)); max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.a-tabs { display: flex; margin-top: 14px; border-bottom: 1px solid var(--ig-line); }
+.a-tabs div { flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--ig-sec); position: relative; }
+.a-tabs div.on { color: var(--ig-ink); }
+.a-tabs div.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--ig-ink); }
+.a-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.acct.phone .a-grid { flex: 1; min-height: 0; overflow: hidden; align-content: start; }
+.a-grid div { aspect-ratio: 1 / 1; background: var(--ig-ph); position: relative; overflow: hidden; }
+.a-grid img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.g-multi { position: absolute; top: 6px; right: 6px; display: flex; filter: drop-shadow(0 0 2px rgba(0,0,0,.45)); }
+.a-nav { display: flex; justify-content: space-around; align-items: center; height: 84px; padding-bottom: 30px; border-top: 1px solid var(--ig-line); background: var(--ig-bg); }
+.a-nav .av { width: 26px; height: 26px; box-shadow: 0 0 0 2px var(--ig-bg), 0 0 0 3.5px var(--ig-ink); }
+
+/* 스토리 */
+.story { position: relative; width: min(360px, 100%); aspect-ratio: 9 / 16; container-type: inline-size; overflow: hidden; border-radius: 10px; background: #111; color: #fff; touch-action: none; user-select: none; -webkit-user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", Helvetica, Arial, sans-serif; }
+.exporting .story { border-radius: 0; }
+.st-grid { position: absolute; inset: 0; display: grid; }
+.cell { position: relative; overflow: hidden; }
+.cell img { position: absolute; max-width: none; pointer-events: none; }
+.cell-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1cqw; font-size: 3.4cqw; color: rgba(255,255,255,.85); background: rgba(255,255,255,.08); border: 1px dashed rgba(255,255,255,.45); cursor: pointer; }
+.cell.sel::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 2px #0095f6; pointer-events: none; }
+.exporting .cell-empty, .exporting .cell.sel::after { opacity: 0; }
+.k { position: absolute; width: max-content; max-width: 90cqw; cursor: grab; transform-origin: center; }
+.k.sel { outline: 1.5px dashed rgba(255,255,255,.95); outline-offset: 1.2cqw; }
+.exporting .k.sel { outline: 0; }
+.k-text { font-size: 7.2cqw; line-height: 1.38; white-space: pre-wrap; word-break: keep-all; overflow-wrap: break-word; }
+.k-text span { -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: .06em .32em; border-radius: .28em; }
+.f-classic { font-weight: 700; }
+.f-modern { font-family: "Do Hyeon", sans-serif; font-size: 7.8cqw; }
+.f-neon { font-family: "Nanum Pen Script", cursive; font-size: 10cqw; line-height: 1.15; }
+.f-type { font-family: "Nanum Gothic Coding", monospace; font-weight: 700; font-size: 6.4cqw; }
+.f-strong { font-family: "Black Han Sans", sans-serif; font-size: 8cqw; font-style: italic; letter-spacing: -.01em; }
+.f-serif { font-family: "Nanum Myeongjo", serif; font-weight: 800; }
+.k-emoji { font-size: 18cqw; line-height: 1; display: block; }
+.k-chip { display: flex; align-items: center; gap: 1.2cqw; padding: 2.2cqw 3.4cqw; border-radius: 2.2cqw; background: #fff; font-weight: 800; font-size: 6cqw; line-height: 1.1; letter-spacing: -.01em; box-shadow: 0 .4cqw 2cqw rgba(0,0,0,.12); }
+.k-chip svg { width: 6cqw; height: 6cqw; }
+.gt { -webkit-background-clip: text; background-clip: text; color: transparent; }
+.g-mention, .g-hashtag { background-image: linear-gradient(90deg, #fbad50, #f56040 40%, #e1306c 75%, #c13584); }
+.g-location { background-image: linear-gradient(90deg, #a033ff, #d63384 60%, #ff4f76); }
+.g-link { background-image: linear-gradient(90deg, #0095f6, #0095f6); }
+.k-chip.st-clear { background: none; box-shadow: none; text-shadow: 0 0 2cqw rgba(0,0,0,.25); }
+.k-chip.st-color { color: #fff; }
+.k-chip.st-clear .gt, .k-chip.st-color .gt { background: none; color: #fff; }
+.k-chip.st-color.c-mention, .k-chip.st-color.c-hashtag { background: linear-gradient(90deg, #fbad50, #e1306c 60%, #c13584); }
+.k-chip.st-color.c-location { background: linear-gradient(90deg, #a033ff, #ff4f76); }
+.k-chip.st-color.c-link { background: #0095f6; }
+.k-music { display: flex; align-items: center; gap: 3cqw; width: 64cqw; padding: 2.6cqw; border-radius: 3.2cqw; background: #fff; color: #000; box-shadow: 0 .6cqw 3cqw rgba(0,0,0,.18); }
+.k-music.dark { background: rgba(20,20,20,.85); color: #fff; }
+.mu-art { width: 13cqw; height: 13cqw; border-radius: 1.6cqw; flex: none; background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); overflow: hidden; }
+.mu-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mu-tx { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.25; }
+.mu-tx b { font-size: 4cqw; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mu-tx span { font-size: 3.5cqw; opacity: .6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mu-eq { display: flex; align-items: flex-end; gap: .7cqw; height: 4.5cqw; }
+.mu-eq i { width: .9cqw; border-radius: .5cqw; background: currentColor; }
+.mu-eq i:nth-child(1) { height: 50%; } .mu-eq i:nth-child(2) { height: 100%; } .mu-eq i:nth-child(3) { height: 70%; }
+.k-q { position: relative; width: 66cqw; padding: 8cqw 4cqw 4cqw; border-radius: 4cqw; background: #fff; color: #000; text-align: center; box-shadow: 0 .6cqw 3cqw rgba(0,0,0,.18); }
+.k-q .q-av { position: absolute; left: 50%; top: -5.5cqw; width: 11cqw; height: 11cqw; border-radius: 50%; object-fit: cover; transform: translateX(-50%); border: .8cqw solid #fff; }
+.q-title { font-size: 4.8cqw; font-weight: 700; line-height: 1.3; white-space: pre-wrap; }
+.q-in { margin-top: 3cqw; padding: 3.2cqw; border-radius: 2.4cqw; background: rgba(0,0,0,.06); color: rgba(0,0,0,.45); font-size: 3.8cqw; }
+.k-img img { display: block; max-width: 60cqw; max-height: 60cqw; pointer-events: none; }
+.k-img.framed img { border: 1.6cqw solid #fff; border-radius: 1cqw; box-shadow: 0 .6cqw 3cqw rgba(0,0,0,.25); }
+
+.s-ui { position: absolute; inset: 0; pointer-events: none; }
+.s-shade-t { position: absolute; left: 0; right: 0; top: 0; height: 26cqw; background: linear-gradient(rgba(0,0,0,.38), rgba(0,0,0,0)); }
+.s-shade-b { position: absolute; left: 0; right: 0; bottom: 0; height: 30cqw; background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.32)); }
+.s-sb { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 3.2cqw 6.5cqw 0 8.6cqw; font: 600 calc(4.3cqw * var(--fs, 1))/1 -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif; }
+.s-sb svg { height: 3.2cqw; width: auto; }
+.s-sb .sb-r { gap: 1.4cqw; }
+.s-bars { position: absolute; left: 2.2cqw; right: 2.2cqw; display: flex; gap: 1cqw; }
+.s-bars i { flex: 1; height: .65cqw; border-radius: .4cqw; background: rgba(255,255,255,.35); overflow: hidden; position: relative; }
+.s-bars i b { position: absolute; left: 0; top: 0; bottom: 0; background: #fff; }
+.s-head { position: absolute; left: 3.4cqw; right: 2.4cqw; display: flex; align-items: center; gap: 2.4cqw; font-size: calc(3.9cqw * var(--fs, 1)); text-shadow: 0 0 1.4cqw rgba(0,0,0,.2); }
+.s-head .av { width: 8.8cqw; height: 8.8cqw; }
+.s-head b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.s-head .vf { margin-left: -1.2cqw; }
+.s-head .tm { color: rgba(255,255,255,.75); white-space: nowrap; }
+.s-head .sp { flex: 1; }
+.s-head svg { width: 6.6cqw; height: 6.6cqw; }
+.s-bottom { position: absolute; left: 3.4cqw; right: 3.4cqw; bottom: 3cqw; display: flex; align-items: center; gap: 4.4cqw; }
+.s-input { flex: 1; height: 12cqw; border: 1px solid rgba(255,255,255,.7); border-radius: 6cqw; padding: 0 4.6cqw; display: flex; align-items: center; font-size: calc(3.9cqw * var(--fs, 1)); color: #fff; }
+.s-bottom svg { width: 7cqw; height: 7cqw; }
+.s-own { position: absolute; left: 3.4cqw; right: 3.4cqw; bottom: 3cqw; display: flex; align-items: center; gap: 2cqw; font-size: calc(3.3cqw * var(--fs, 1)); }
+.s-viewers { display: flex; }
+.s-viewers .av { width: 7cqw; height: 7cqw; border: .5cqw solid #000; margin-right: -2.2cqw; }
+.s-own .lbl { margin-left: 3.4cqw; font-weight: 600; font-size: calc(3.6cqw * var(--fs, 1)); }
+.s-own .sp { flex: 1; }
+.s-oi { display: flex; flex-direction: column; align-items: center; gap: .8cqw; width: 14cqw; font-size: calc(2.9cqw * var(--fs, 1)); }
+.s-oi svg { width: 6.4cqw; height: 6.4cqw; }
+
+
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; min-height: 100vh; min-height: 100dvh; display: flex; justify-content: center; background: #fff; }
+body.v-dark { background: #000; }
+body.v-lock { overflow: hidden; }
+.v-scr { width: 100%; max-width: 470px; }
+.v-scr[hidden], .v-ov[hidden] { display: none; }
+.v-scr > .ig { width: 100%; max-width: none; overflow: visible; }
+.ig.phone { height: 100vh; height: 100dvh; }
+.v-top { position: sticky; top: 0; z-index: 3; display: flex; align-items: center; justify-content: space-between; height: 44px; padding: 0 10px; background: var(--ig-bg); }
+.v-top button { border: 0; background: none; padding: 0; color: inherit; display: flex; cursor: pointer; }
+.v-tt { text-align: center; line-height: 1.2; }
+.v-tt small { display: block; font-size: 12px; color: var(--ig-sec); text-transform: uppercase; }
+.v-tt b { font-size: 16px; font-weight: 700; }
+.a-nav { position: sticky; bottom: 0; }
+[data-go], [data-open], [data-story], [data-car], [data-close] { cursor: pointer; }
+.v-ov { position: fixed; inset: 0; z-index: 20; }
+.v-dim { position: absolute; inset: 0; background: rgba(0,0,0,.5); }
+.v-sheet { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 100%; max-width: 470px; height: 78%; display: flex; background: none; }
+.v-sheet .sheet { width: 100%; }
+.v-sheet .s-list { overflow-y: auto; }
+.v-st { background: #000; display: flex; align-items: center; justify-content: center; }
+.v-st .story { width: min(100vw, 56.25vh); width: min(100vw, 56.25dvh); max-width: none; border-radius: 0; touch-action: auto; }
+.v-st .k { cursor: default; }
+.v-x { pointer-events: auto; display: flex; cursor: pointer; }
+.cm-plain .sheet { min-height: 100vh; min-height: 100dvh; }
+
+.v-home { display: flex; color: inherit; margin-left: -6px; }
+</style>
+</head>
+<body class="v-light">
+<section class="v-scr" id="s-home">
+  <div style="--fs:0.85" class="ig shot acct" data-theme="light">
+    
+    <div class="a-top">
+    <a class="v-home" href="../" target="_top" aria-label="200일 홈으로"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="a-un"><span class="t">yujin_official</span><svg class="vf" width="18" height="18" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="sp"></span>
+      <div class="a-ic"><svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg></div>
+    </div>
+    <div class="a-row">
+      <div class="a-av"><img class="av" src="../img/yujin.jpg" alt=""></div>
+      <div class="a-right">
+        <div class="a-dn">유진 (Yujin)</div>
+        <div class="a-stats">
+          <div><b>75</b><span>게시물</span></div>
+          <div><b>832만</b><span>팔로워</span></div>
+          <div><b>1</b><span>팔로잉</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="a-bio">
+      
+      <div class="bio">배우 유진 공식 인스타그램입니다. (Staff-Managed)</div>
+      
+      
+    </div>
+    <div class="a-btns"><div class="blue">팔로우</div><div>메시지</div><div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" ><path d="M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2.5 21c.8-4 3.8-6 7.5-6s6.7 2 7.5 6M19.5 8v6M16.5 11h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+    
+    <div class="a-tabs"><div class="on"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M2.5 7.5h19M8.5 2.5l3 5M14.5 2.5l3 5M6.5 2.5h11a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4h-11a4 4 0 0 1-4-4v-11a4 4 0 0 1 4-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11.3v6.2l5-3.1z" fill="currentColor"/></svg></div><div><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M10.2 18.3 12 21l1.8-2.7H19a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11.3a2 2 0 0 0 2 2zM12 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM7.5 15c.7-1.9 2.4-3 4.5-3s3.8 1.1 4.5 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+    <div class="a-grid"><div data-go="s-post-0"><img src="https://i.imgur.com/fcbDlEu.jpg" alt="" style="object-position:50.02% 50.00%;transform-origin:50.02% 50.00%;transform:scale(1.000)"></div><div data-go="s-post-1"><img src="https://i.imgur.com/EuD1tio.jpg" alt="" style="object-position:81.79% 12.14%;transform-origin:81.79% 12.14%;transform:scale(1.069)"><span class="g-multi"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 3h11a2 2 0 0 1 2 2v11" fill="none" stroke="#fff" stroke-width="2"/><rect x="3" y="7" width="14" height="14" rx="2" fill="#fff"/></svg></span></div><div data-go="s-post-2"><img src="https://i.imgur.com/qs1qgoM.jpg" alt="" style="object-position:66.59% 27.34%;transform-origin:66.59% 27.34%;transform:scale(1.216)"></div><div data-go="s-post-3"><img src="https://i.imgur.com/LN9i2js.jpg" alt="" style="object-position:36.74% 8.96%;transform-origin:36.74% 8.96%;transform:scale(1.060)"></div><div data-go="s-post-4"><img src="https://i.imgur.com/ZSDzpHQ.jpg" alt="" style="object-position:100.00% 60.55%;transform-origin:100.00% 60.55%;transform:scale(1.000)"></div><div data-go="s-post-5"><img src="https://i.imgur.com/jLIpzFy.jpg" alt="" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)"></div><div data-go="s-post-6"><img src="https://i.imgur.com/2Y6Bi53.jpg" alt="" style="object-position:50.00% 55.87%;transform-origin:50.00% 55.87%;transform:scale(1.000)"></div><div data-go="s-post-7"><img src="https://i.imgur.com/7ooQDtv.jpg" alt="" style="object-position:50.00% 25.77%;transform-origin:50.00% 25.77%;transform:scale(1.044)"><span class="g-multi"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 3h11a2 2 0 0 1 2 2v11" fill="none" stroke="#fff" stroke-width="2"/><rect x="3" y="7" width="14" height="14" rx="2" fill="#fff"/></svg></span></div><div data-go="s-post-8"><img src="https://i.imgur.com/mKgbFsV.jpg" alt="" style="object-position:50.00% 13.02%;transform-origin:50.00% 13.02%;transform:scale(1.000)"></div></div>
+    <div class="a-nav"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6.5H9V21H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M2.5 7.5h19M8.5 2.5l3 5M14.5 2.5l3 5M6.5 2.5h11a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4h-11a4 4 0 0 1-4-4v-11a4 4 0 0 1 4-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11.3v6.2l5-3.1z" fill="currentColor"/></svg><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M10.5 18a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15zM16 16l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><img class="av" src="../img/yujin.jpg" alt=""></div>
+  </div></section>
+<section class="v-scr" id="s-post-0" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>yujin_official</small><b>게시물</b></div><span style="width:26px"></span></div>
+  <article class="post">
+    <header class="p-head">
+      <img class="av" src="../img/yujin.jpg" alt="">
+      <div class="p-meta">
+        <div class="p-user"><span class="t">yujin_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        
+      </div>
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    </header>
+    <div class="p-media" style="aspect-ratio:1.91/1">
+      <img src="https://i.imgur.com/fcbDlEu.jpg" alt="" style="object-position:50.00% 9.37%;transform-origin:50.00% 9.37%;transform:scale(1.000)">
+      
+    </div>
+    
+    <div class="p-act">
+      <div class="p-act-l">
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="a" data-open="0"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2,452</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M19 7H8.5A4.5 4.5 0 0 0 4 11.5v.5M16 4l3 3-3 3M5 17h10.5a4.5 4.5 0 0 0 4.5-4.5V12M8 20l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1942</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      
+      <span class="sp"></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20 21 12 13.44 4 21V3h16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="p-body">
+      
+      <div class="p-cap"><b>yujin_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Debut 15th Anniversary. 
+늘 같은 자리에서, 묵묵히 응원해주셔서 감사합니다. 사랑합니다.</div>
+      
+      <div class="p-time sec">2021년 9월 2일</div>
+    </div>
+  </article></div></section>
+<div class="v-ov" id="ov-c-0" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
+  <div class="sheet">
+    <div class="grab" data-close></div>
+    <div class="s-title">댓글</div>
+    <div class="s-list">
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
+      <div class="c-t">신드롬을 사랑하자</div>
+      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="../img/yujin.jpg" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="../img/yujin.jpg" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>yujin_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
+      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      <div class="c-more"><i></i>답글 2개 더 보기</div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+  </div></div>
+    <div class="s-foot">
+      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
+      <div class="s-in"><img class="av" src="../img/yujin.jpg" alt=""><div class="s-ph"><span>yujin_official님에게 댓글 추가...</span></div></div>
+    </div>
+  </div></div></div>
+<section class="v-scr" id="s-post-1" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>yujin_official</small><b>게시물</b></div><span style="width:26px"></span></div>
+  <article class="post">
+    <header class="p-head">
+      <img class="av" src="../img/yujin.jpg" alt="">
+      <div class="p-meta">
+        <div class="p-user"><span class="t">yujin_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        
+      </div>
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    </header>
+    <div class="p-media" style="aspect-ratio:4/5" data-car>
+      <img src="https://i.imgur.com/EuD1tio.jpg" alt="" data-ph="0" style="object-position:50.00% 26.04%;transform-origin:50.00% 26.04%;transform:scale(1.000)"><img src="https://i.imgur.com/n4j3CY9.jpg" alt="" data-ph="1" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)" hidden>
+      <span class="p-count">1/2</span>
+    </div>
+    <div class="p-dots row"><i class="on"></i><i class=""></i></div>
+    <div class="p-act">
+      <div class="p-act-l">
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="a" data-open="1"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>523</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M19 7H8.5A4.5 4.5 0 0 0 4 11.5v.5M16 4l3 3-3 3M5 17h10.5a4.5 4.5 0 0 0 4.5-4.5V12M8 20l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>242</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      
+      <span class="sp"></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20 21 12 13.44 4 21V3h16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="p-body">
+      
+      <div class="p-cap"><b>yujin_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 오늘도 안전하게, 즐겁게! <span class="lk">#황성의그림자</span> <span class="lk">#촬영중</span></div>
+      
+      <div class="p-time sec">2021년 2월 27일</div>
+    </div>
+  </article></div></section>
+<div class="v-ov" id="ov-c-1" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
+  <div class="sheet">
+    <div class="grab" data-close></div>
+    <div class="s-title">댓글</div>
+    <div class="s-list">
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
+      <div class="c-t">신드롬을 사랑하자</div>
+      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="../img/yujin.jpg" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="../img/yujin.jpg" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>yujin_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
+      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      <div class="c-more"><i></i>답글 2개 더 보기</div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+  </div></div>
+    <div class="s-foot">
+      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
+      <div class="s-in"><img class="av" src="../img/yujin.jpg" alt=""><div class="s-ph"><span>yujin_official님에게 댓글 추가...</span></div></div>
+    </div>
+  </div></div></div>
+<section class="v-scr" id="s-post-2" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>yujin_official</small><b>게시물</b></div><span style="width:26px"></span></div>
+  <article class="post">
+    <header class="p-head">
+      <img class="av" src="../img/yujin.jpg" alt="">
+      <div class="p-meta">
+        <div class="p-user"><span class="t">yujin_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        
+      </div>
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    </header>
+    <div class="p-media" style="aspect-ratio:4/5">
+      <img src="https://i.imgur.com/qs1qgoM.jpg" alt="" style="object-position:57.58% 32.81%;transform-origin:57.58% 32.81%;transform:scale(1.174)">
+      
+    </div>
+    
+    <div class="p-act">
+      <div class="p-act-l">
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="a" data-open="2"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>221</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M19 7H8.5A4.5 4.5 0 0 0 4 11.5v.5M16 4l3 3-3 3M5 17h10.5a4.5 4.5 0 0 0 4.5-4.5V12M8 20l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>184</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      
+      <span class="sp"></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20 21 12 13.44 4 21V3h16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="p-body">
+      
+      <div class="p-cap"><b>yujin_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 작은 생명들이 따뜻한 겨울을 보낼 수 있도록. 
+(해당 게시물은 특정 단체의 홍보와 무관하며, 배우의 개인적인 봉사활동임을 알려드립니다.)</div>
+      
+      <div class="p-time sec">2020년 12월 25일</div>
+    </div>
+  </article></div></section>
+<div class="v-ov" id="ov-c-2" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
+  <div class="sheet">
+    <div class="grab" data-close></div>
+    <div class="s-title">댓글</div>
+    <div class="s-list">
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
+      <div class="c-t">신드롬을 사랑하자</div>
+      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="../img/yujin.jpg" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="../img/yujin.jpg" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>yujin_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
+      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      <div class="c-more"><i></i>답글 2개 더 보기</div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+  </div></div>
+    <div class="s-foot">
+      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
+      <div class="s-in"><img class="av" src="../img/yujin.jpg" alt=""><div class="s-ph"><span>yujin_official님에게 댓글 추가...</span></div></div>
+    </div>
+  </div></div></div>
+<section class="v-scr" id="s-post-3" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>yujin_official</small><b>게시물</b></div><span style="width:26px"></span></div>
+  <article class="post">
+    <header class="p-head">
+      <img class="av" src="../img/yujin.jpg" alt="">
+      <div class="p-meta">
+        <div class="p-user"><span class="t">yujin_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        
+      </div>
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    </header>
+    <div class="p-media" style="aspect-ratio:4/5">
+      <img src="https://i.imgur.com/LN9i2js.jpg" alt="" style="object-position:50.00% 27.89%;transform-origin:50.00% 27.89%;transform:scale(1.000)">
+      
+    </div>
+    
+    <div class="p-act">
+      <div class="p-act-l">
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="a" data-open="3"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>982</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M19 7H8.5A4.5 4.5 0 0 0 4 11.5v.5M16 4l3 3-3 3M5 17h10.5a4.5 4.5 0 0 0 4.5-4.5V12M8 20l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>646</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      
+      <span class="sp"></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20 21 12 13.44 4 21V3h16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="p-body">
+      
+      <div class="p-cap"><b>yujin_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 영광스러운 자리에 함께할 수 있어 기쁩니다. 감사합니다. <span class="lk">#청룡영화상</span></div>
+      
+      <div class="p-time sec">2020년 11월 26일</div>
+    </div>
+  </article></div></section>
+<div class="v-ov" id="ov-c-3" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
+  <div class="sheet">
+    <div class="grab" data-close></div>
+    <div class="s-title">댓글</div>
+    <div class="s-list">
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
+      <div class="c-t">신드롬을 사랑하자</div>
+      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="../img/yujin.jpg" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="../img/yujin.jpg" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>yujin_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
+      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      <div class="c-more"><i></i>답글 2개 더 보기</div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+  </div></div>
+    <div class="s-foot">
+      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
+      <div class="s-in"><img class="av" src="../img/yujin.jpg" alt=""><div class="s-ph"><span>yujin_official님에게 댓글 추가...</span></div></div>
+    </div>
+  </div></div></div>
+<section class="v-scr" id="s-post-4" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>yujin_official</small><b>게시물</b></div><span style="width:26px"></span></div>
+  <article class="post">
+    <header class="p-head">
+      <img class="av" src="../img/yujin.jpg" alt="">
+      <div class="p-meta">
+        <div class="p-user"><span class="t">yujin_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        
+      </div>
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    </header>
+    <div class="p-media" style="aspect-ratio:4/5">
+      <img src="https://i.imgur.com/ZSDzpHQ.jpg" alt="" style="object-position:50.00% 51.27%;transform-origin:50.00% 51.27%;transform:scale(1.000)">
+      
+    </div>
+    
+    <div class="p-act">
+      <div class="p-act-l">
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="a" data-open="4"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>390</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M19 7H8.5A4.5 4.5 0 0 0 4 11.5v.5M16 4l3 3-3 3M5 17h10.5a4.5 4.5 0 0 0 4.5-4.5V12M8 20l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>192</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      
+      <span class="sp"></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20 21 12 13.44 4 21V3h16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="p-body">
+      
+      <div class="p-cap"><b>yujin_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 영화 &#39;독백&#39;이 1000만 관객을 돌파했습니다. 함께 울고 웃어주신 모든 분들께 진심으로 감사드립니다.</div>
+      
+      <div class="p-time sec">2020년 6월 21일</div>
+    </div>
+  </article></div></section>
+<div class="v-ov" id="ov-c-4" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
+  <div class="sheet">
+    <div class="grab" data-close></div>
+    <div class="s-title">댓글</div>
+    <div class="s-list">
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
+      <div class="c-t">신드롬을 사랑하자</div>
+      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="../img/yujin.jpg" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="../img/yujin.jpg" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>yujin_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
+      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      <div class="c-more"><i></i>답글 2개 더 보기</div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+  </div></div>
+    <div class="s-foot">
+      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
+      <div class="s-in"><img class="av" src="../img/yujin.jpg" alt=""><div class="s-ph"><span>yujin_official님에게 댓글 추가...</span></div></div>
+    </div>
+  </div></div></div>
+<section class="v-scr" id="s-post-5" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>yujin_official</small><b>게시물</b></div><span style="width:26px"></span></div>
+  <article class="post">
+    <header class="p-head">
+      <img class="av" src="../img/yujin.jpg" alt="">
+      <div class="p-meta">
+        <div class="p-user"><span class="t">yujin_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        
+      </div>
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    </header>
+    <div class="p-media" style="aspect-ratio:4/5">
+      <img src="https://i.imgur.com/jLIpzFy.jpg" alt="" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)">
+      
+    </div>
+    
+    <div class="p-act">
+      <div class="p-act-l">
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="a" data-open="5"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>543</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M19 7H8.5A4.5 4.5 0 0 0 4 11.5v.5M16 4l3 3-3 3M5 17h10.5a4.5 4.5 0 0 0 4.5-4.5V12M8 20l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>143</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      
+      <span class="sp"></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20 21 12 13.44 4 21V3h16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="p-body">
+      
+      <div class="p-cap"><b>yujin_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 여러분과 함께한 시간, 언제나 감사합니다. 보내주신 사랑, 좋은 연기로 보답하겠습니다. <span class="lk">#팬미팅</span> <span class="lk">#고마워요</span></div>
+      
+      <div class="p-time sec">2020년 3월 12일</div>
+    </div>
+  </article></div></section>
+<div class="v-ov" id="ov-c-5" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
+  <div class="sheet">
+    <div class="grab" data-close></div>
+    <div class="s-title">댓글</div>
+    <div class="s-list">
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
+      <div class="c-t">신드롬을 사랑하자</div>
+      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="../img/yujin.jpg" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="../img/yujin.jpg" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>yujin_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
+      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      <div class="c-more"><i></i>답글 2개 더 보기</div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+  </div></div>
+    <div class="s-foot">
+      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
+      <div class="s-in"><img class="av" src="../img/yujin.jpg" alt=""><div class="s-ph"><span>yujin_official님에게 댓글 추가...</span></div></div>
+    </div>
+  </div></div></div>
+<section class="v-scr" id="s-post-6" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>yujin_official</small><b>게시물</b></div><span style="width:26px"></span></div>
+  <article class="post">
+    <header class="p-head">
+      <img class="av" src="../img/yujin.jpg" alt="">
+      <div class="p-meta">
+        <div class="p-user"><span class="t">yujin_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        
+      </div>
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    </header>
+    <div class="p-media" style="aspect-ratio:4/5">
+      <img src="https://i.imgur.com/2Y6Bi53.jpg" alt="" style="object-position:50.00% 82.07%;transform-origin:50.00% 82.07%;transform:scale(1.000)">
+      
+    </div>
+    
+    <div class="p-act">
+      <div class="p-act-l">
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="a" data-open="6"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>217</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M19 7H8.5A4.5 4.5 0 0 0 4 11.5v.5M16 4l3 3-3 3M5 17h10.5a4.5 4.5 0 0 0 4.5-4.5V12M8 20l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>340</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      
+      <span class="sp"></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20 21 12 13.44 4 21V3h16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="p-body">
+      
+      <div class="p-cap"><b>yujin_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> &#39;황성의 그림자&#39; 첫 대본 리딩. 뜨거운 열기 속에서. <span class="lk">#황성의그림자</span> <span class="lk">#새로운시작</span></div>
+      
+      <div class="p-time sec">2019년 11월 16일</div>
+    </div>
+  </article></div></section>
+<div class="v-ov" id="ov-c-6" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
+  <div class="sheet">
+    <div class="grab" data-close></div>
+    <div class="s-title">댓글</div>
+    <div class="s-list">
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>fan_5</b><span class="sec">4월 3일</span></div>
+      <div class="c-t">일하는 남자 섹시하다... 미간 주름마저 사랑해...</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>12</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>actress_park</b><span class="sec">4월 3일</span></div>
+      <div class="c-t">유진 씨, 오늘 정말 멋졌어요! 우리 호흡 잘 맞춰봐요! 파이팅!</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      <div class="c-more"><i></i>답글 2개 더 보기</div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>32</span></div>
+  </div></div>
+    <div class="s-foot">
+      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
+      <div class="s-in"><img class="av" src="../img/yujin.jpg" alt=""><div class="s-ph"><span>yujin_official님에게 댓글 추가...</span></div></div>
+    </div>
+  </div></div></div>
+<section class="v-scr" id="s-post-7" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>yujin_official</small><b>게시물</b></div><span style="width:26px"></span></div>
+  <article class="post">
+    <header class="p-head">
+      <img class="av" src="../img/yujin.jpg" alt="">
+      <div class="p-meta">
+        <div class="p-user"><span class="t">yujin_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        
+      </div>
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    </header>
+    <div class="p-media" style="aspect-ratio:4/5" data-car>
+      <img src="https://i.imgur.com/7ooQDtv.jpg" alt="" data-ph="0" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)"><img src="https://i.imgur.com/qB7dRfW.jpg" alt="" data-ph="1" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)" hidden>
+      <span class="p-count">1/2</span>
+    </div>
+    <div class="p-dots row"><i class="on"></i><i class=""></i></div>
+    <div class="p-act">
+      <div class="p-act-l">
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="a" data-open="7"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>325</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M19 7H8.5A4.5 4.5 0 0 0 4 11.5v.5M16 4l3 3-3 3M5 17h10.5a4.5 4.5 0 0 0 4.5-4.5V12M8 20l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>244</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      
+      <span class="sp"></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20 21 12 13.44 4 21V3h16z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="p-body">
+      
+      <div class="p-cap"><b>yujin_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 오늘은 날씨가 참 좋네요. 잠시 쉬어가는 시간. 모두 행복한 하루 보내세요. <span class="lk">#휴식</span> <span class="lk">#일상</span> <span class="lk">#유진</span></div>
+      
+      <div class="p-time sec">2019년 6월 4일</div>
+    </div>
+  </article></div></section>
+<div class="v-ov" id="ov-c-7" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
+  <div class="sheet">
+    <div class="grab" data-close></div>
+    <div class="s-title">댓글</div>
+    <div class="s-list">
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
+      <div class="c-t">신드롬을 사랑하자</div>
+      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="../img/yujin.jpg" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="../img/yujin.jpg" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>yujin_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
+      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      <div class="c-more"><i></i>답글 2개 더 보기</div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+  </div></div>
+    <div class="s-foot">
+      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
+      <div class="s-in"><img class="av" src="../img/yujin.jpg" alt=""><div class="s-ph"><span>yujin_official님에게 댓글 추가...</span></div></div>
+    </div>
+  </div></div></div>
+<section class="v-scr" id="s-post-8" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>yujin_official</small><b>게시물</b></div><span style="width:26px"></span></div>
+  <article class="post">
+    <header class="p-head">
+      <img class="av" src="../img/yujin.jpg" alt="">
+      <div class="p-meta">
+        <div class="p-user"><span class="t">yujin_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="p-sub">seoul</div>
+      </div>
+      
+      <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    </header>
+    <div class="p-media" style="aspect-ratio:4/5">
+      <img src="https://i.imgur.com/mKgbFsV.jpg" alt="" style="object-position:50.00% 15.83%;transform-origin:50.00% 15.83%;transform:scale(1.000)">
+      
+    </div>
+    
+    <div class="p-act">
+      <div class="p-act-l">
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="a" data-open="8"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>853</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M19 7H8.5A4.5 4.5 0 0 0 4 11.5v.5M16 4l3 3-3 3M5 17h10.5a4.5 4.5 0 0 0 4.5-4.5V12M8 20l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>912</span></span>
+        <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      
+      <span class="sp"></span>
+      <svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20 21 12 13.44 4 21V3h16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="p-body">
+      
+      <div class="p-cap"><b>yujin_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 여러분, 오랜만입니다. 차기작 &#39;황성의 그림자&#39;에서 새로운 모습으로 찾아뵙겠습니다. 밤이 깊었네요. 좋은 꿈 꾸시길</div>
+      
+      <div class="p-time sec">2018년 4월 4일</div>
+    </div>
+  </article></div></section>
+<div class="v-ov" id="ov-c-8" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
+  <div class="sheet">
+    <div class="grab" data-close></div>
+    <div class="s-title">댓글</div>
+    <div class="s-list">
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>friend_01</b><span class="sec">2시간</span></div>
+      <div class="c-t">분위기 너무 좋다 😍</div>
+      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="../img/yujin.jpg" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="../img/yujin.jpg" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>yujin_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@friend_01</span> 고마워 ❤️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>hello.world</b><span class="sec">45분</span></div>
+      <div class="c-t">여기 어디야?? 나도 가볼래</div>
+      <div class="c-a"><span>답글 달기</span></div>
+      <div class="c-more"><i></i>답글 2개 더 보기</div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+  </div></div>
+    <div class="s-foot">
+      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
+      <div class="s-in"><img class="av" src="../img/yujin.jpg" alt=""><div class="s-ph"><span>yujin_official님에게 댓글 추가...</span></div></div>
+    </div>
+  </div></div></div>
+<div class="v-ov v-st" id="ov-s-0" data-closable data-auto hidden><div class="story shot" style="background:linear-gradient(160deg,#833ab4,#fd1d1d 55%,#fcb045);--fs:0.85"><div class="st-grid" style="grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0cqw;">
+    <div class="cell" data-cell="0"></div><div class="cell" data-cell="1"></div><div class="cell" data-cell="2"></div><div class="cell" data-cell="3"></div>
+  </div><div class="s-ui">
+      <div class="s-shade-t"></div>
+      
+      <div class="s-bars" style="top:2.4cqw"><i><b data-cur="" style="width:40%"></b></i><i><b style="width:0%"></b></i><i><b style="width:0%"></b></i></div>
+      <div class="s-head" style="top:5cqw"><img class="av" src="../img/yujin.jpg" alt=""><b>yujin_official</b><svg class="vf" width="13" height="13" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"></path><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="tm">3시간</span><span class="sp"></span><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6" fill="currentColor"></circle><circle cx="12" cy="12" r="1.6" fill="currentColor"></circle><circle cx="19" cy="12" r="1.6" fill="currentColor"></circle></svg><span class="v-x" data-close=""><svg width="24" height="24" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div>
+      <div class="s-shade-b"></div><div class="s-bottom"><div class="s-input">메시지 보내기</div><svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg width="24" height="24" viewBox="0 0 24 24"><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+    </div></div></div>
+<script>
+(function () {
+  var all = function (q) { return Array.prototype.slice.call(document.querySelectorAll(q)); };
+  var timer = null;
+  function show(id) { var el = document.getElementById(id); if (!el) return; all('.v-scr').forEach(function (x) { x.hidden = x !== el; }); window.scrollTo(0, 0); }
+  function closeAll() { all('.v-ov[data-closable]').forEach(function (o) { o.hidden = true; }); document.body.classList.remove('v-lock'); clearTimeout(timer); }
+  function open(id) { var el = document.getElementById(id); if (!el) return null; el.hidden = false; document.body.classList.add('v-lock'); return el; }
+  function play(el) {
+    var b = el.querySelector('.s-bars b[data-cur]'); if (!b) return;
+    b.style.transition = 'none'; b.style.width = '0%'; void b.offsetWidth;
+    b.style.transition = 'width 5s linear'; b.style.width = '100%';
+    clearTimeout(timer); timer = setTimeout(closeAll, 5000);
+  }
+  function slide(m, x) {
+    var imgs = m.querySelectorAll('img[data-ph]'), n = imgs.length, cur = 0;
+    for (var i = 0; i < n; i++) if (!imgs[i].hidden) cur = i;
+    var r = m.getBoundingClientRect(), nx = Math.max(0, Math.min(n - 1, cur + (x > r.left + r.width / 2 ? 1 : -1)));
+    for (var j = 0; j < n; j++) imgs[j].hidden = j !== nx;
+    var c = m.querySelector('.p-count'); if (c) c.textContent = (nx + 1) + '/' + n;
+    var post = m.closest('.post'), dots = post ? post.querySelectorAll('.p-dots i') : [];
+    for (var k = 0; k < dots.length; k++) dots[k].className = k === Math.min(nx, dots.length - 1) ? 'on' : '';
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-car],[data-close],[data-back],[data-go],[data-open],[data-story]'); if (!t) return;
+    if (t.hasAttribute('data-car')) slide(t, e.clientX);
+    else if (t.hasAttribute('data-close')) closeAll();
+    else if (t.hasAttribute('data-back')) show('s-home');
+    else if (t.getAttribute('data-go')) show(t.getAttribute('data-go'));
+    else if (t.getAttribute('data-open')) open('ov-c-' + t.getAttribute('data-open'));
+    else if (t.getAttribute('data-story')) { var el = open('ov-s-' + t.getAttribute('data-story')); if (el && el.hasAttribute('data-auto')) play(el); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+})();
+</script>
+</body>
+</html>
