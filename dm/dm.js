@@ -1,5 +1,5 @@
 // 3번 인스타 '메시지' → 방문자와 1:1 실시간 DM (Firebase 익명 로그인 + Firestore)
-import { firebaseConfig } from './firebase-config.js';
+import { firebaseConfig } from './firebase-config.js?v=10131351';
 
 const V = '10.12.2';
 const $ = (id) => document.getElementById(id);
