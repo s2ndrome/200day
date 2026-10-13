@@ -247,6 +247,8 @@ body.v-lock { overflow: hidden; }
 
 .c-l { width: auto; min-width: 22px; white-space: nowrap; }
 .v-home { display: flex; color: inherit; margin-left: -6px; }
+/* 컴퓨터에서만 글씨 작게 */
+@media (min-width: 1024px) and (pointer: fine) { .ig { --fs: .76 !important; } }
 </style>
 </head>
 <body class="v-light">

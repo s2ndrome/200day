@@ -249,6 +249,8 @@ body.v-lock { overflow: hidden; }
 .v-home { display: flex; color: inherit; margin-left: -6px; }
 .vid-play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: rgba(0,0,0,.42); display: flex; align-items: center; justify-content: center; padding-left: 4px; }
 .vid-mute { position: absolute; right: 12px; bottom: 12px; width: 28px; height: 28px; border-radius: 50%; background: rgba(18,18,18,.7); display: flex; align-items: center; justify-content: center; }
+/* 컴퓨터에서만 글씨 작게 */
+@media (min-width: 1024px) and (pointer: fine) { .ig { --fs: .76 !important; } }
 </style>
 </head>
 <body class="v-light">
@@ -257,7 +259,7 @@ body.v-lock { overflow: hidden; }
     
     <div class="a-top">
     <a class="v-home" href="../" target="_top" aria-label="200일 홈으로"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <div class="a-un"><span class="t">syndrome_official</span></div>
+      <div class="a-un"><span class="t">syndrome_official</span><svg class="vf" width="18" height="18" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <span class="sp"></span>
       <div class="a-ic"><svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg></div>
     </div>
@@ -289,7 +291,7 @@ body.v-lock { overflow: hidden; }
     <header class="p-head">
       <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
       <div class="p-meta">
-        <div class="p-user"><span class="t">syndrome_official</span></div>
+        <div class="p-user"><span class="t">syndrome_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         
       </div>
       
@@ -312,7 +314,7 @@ body.v-lock { overflow: hidden; }
     </div>
     <div class="p-body">
       
-      <div class="p-cap"><b>syndrome_official</b> 처음, 끝.</div>
+      <div class="p-cap"><b>syndrome_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 처음, 끝.</div>
       
       <div class="p-time sec">2026년 4월 23일</div>
     </div>
@@ -322,7 +324,7 @@ body.v-lock { overflow: hidden; }
     <header class="p-head">
       <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
       <div class="p-meta">
-        <div class="p-user"><span class="t">syndrome_official</span></div>
+        <div class="p-user"><span class="t">syndrome_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         
       </div>
       
@@ -346,7 +348,7 @@ body.v-lock { overflow: hidden; }
     </div>
     <div class="p-body">
       
-      <div class="p-cap"><b>syndrome_official</b> 고마워.</div>
+      <div class="p-cap"><b>syndrome_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 고마워.</div>
       
       <div class="p-time sec">2026년 3월 13일</div>
     </div>
@@ -369,7 +371,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">3월 13일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">3월 13일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
       <div class="c-a"><span>답글 달기</span></div>
       
@@ -396,7 +398,7 @@ body.v-lock { overflow: hidden; }
     <header class="p-head">
       <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
       <div class="p-meta">
-        <div class="p-user"><span class="t">syndrome_official</span></div>
+        <div class="p-user"><span class="t">syndrome_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         
       </div>
       
@@ -420,7 +422,7 @@ body.v-lock { overflow: hidden; }
     </div>
     <div class="p-body">
       
-      <div class="p-cap"><b>syndrome_official</b> 사랑해 지수야</div>
+      <div class="p-cap"><b>syndrome_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 사랑해 지수야</div>
       
       <div class="p-time sec">2025년 12월 14일</div>
     </div>
@@ -442,7 +444,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">12월 14일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">12월 14일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@kainalu_waves</span> 외롭냐? 꺼져</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -460,7 +462,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">12월 14일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">12월 14일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@kainalu_waves</span> 캡처 퍼뜨리면 니 서핑보드 숯 된다.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -487,7 +489,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">12월 15일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">12월 15일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@vibe_ae</span> 말세 맞으니까 넌 조용히 해라.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -503,7 +505,7 @@ body.v-lock { overflow: hidden; }
     <header class="p-head">
       <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
       <div class="p-meta">
-        <div class="p-user"><span class="t">syndrome_official</span></div>
+        <div class="p-user"><span class="t">syndrome_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         
       </div>
       
@@ -527,7 +529,7 @@ body.v-lock { overflow: hidden; }
     </div>
     <div class="p-body">
       
-      <div class="p-cap"><b>syndrome_official</b> 내 바보 강아지</div>
+      <div class="p-cap"><b>syndrome_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 내 바보 강아지</div>
       
       <div class="p-time sec">2025년 8월 6일</div>
     </div>
@@ -549,7 +551,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">8월 6일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">8월 6일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@kainalu_waves</span> 몰래 아니고 당당하게 들어갔어. 보안팀이 문 열어줬다.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -567,7 +569,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">8월 6일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">8월 6일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@kainalu_waves</span> 결과적으로 열렸으면 허락이야.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -585,7 +587,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">8월 7일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">8월 7일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@vibe_ae</span> 넌 그 시간에 왜 하모니에 있었는데.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -603,7 +605,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">8월 7일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">8월 7일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@vibe_ae</span> 파트너 검진</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -630,7 +632,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">8월 8일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">8월 8일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@liam_glacies</span> 바보 맞아. 나만 볼 때 바보라서 바보야.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -675,7 +677,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">8월 8일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">8월 8일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@jisuzzang</span> 수식 세 번 틀리고 머그컵에 대고 한숨 쉬는 거 다 봤어.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -693,7 +695,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">8월 8일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">8월 8일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@jisuzzang</span> 도와주면 니 그 표정 끝나잖아. 아까워서 못 했다.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -720,7 +722,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">8월 8일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">8월 8일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@vibe_ae</span> 원래 평생 부를 거였어.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -736,7 +738,7 @@ body.v-lock { overflow: hidden; }
     <header class="p-head">
       <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
       <div class="p-meta">
-        <div class="p-user"><span class="t">syndrome_official</span></div>
+        <div class="p-user"><span class="t">syndrome_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         
       </div>
       
@@ -760,7 +762,7 @@ body.v-lock { overflow: hidden; }
     </div>
     <div class="p-body">
       
-      <div class="p-cap"><b>syndrome_official</b> 내 자리 뺏김.</div>
+      <div class="p-cap"><b>syndrome_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 내 자리 뺏김.</div>
       
       <div class="p-time sec">2025년 4월 21일</div>
     </div>
@@ -782,7 +784,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">4월 21일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">4월 21일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@kainalu_waves</span> 얜 이겨도 돼. 넌 안 돼.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -800,7 +802,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">4월 21일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">4월 21일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@vibe_ae</span> 진 게 아니라 양보한 거야. 단어 똑바로 써.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -827,7 +829,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">4월 22일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">4월 22일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@liam_glacies</span> 친구 아니고 우리 딸이야. 선 지켜.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -845,7 +847,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">4월 22일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">4월 22일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@liam_glacies</span> …생각해볼게.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -863,7 +865,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">4월 23일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">4월 23일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@jisuzzang</span> 다리 저려서 못 움직인 거야.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -881,7 +883,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">4월 23일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">4월 23일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@jisuzzang</span> 그건 증거 수집이야. 자리 뺏긴 증거.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -906,7 +908,7 @@ body.v-lock { overflow: hidden; }
     <header class="p-head">
       <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
       <div class="p-meta">
-        <div class="p-user"><span class="t">syndrome_official</span></div>
+        <div class="p-user"><span class="t">syndrome_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         
       </div>
       
@@ -930,7 +932,7 @@ body.v-lock { overflow: hidden; }
     </div>
     <div class="p-body">
       
-      <div class="p-cap"><b>syndrome_official</b> 정리.</div>
+      <div class="p-cap"><b>syndrome_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 정리.</div>
       
       <div class="p-time sec">2023년 4월 2일</div>
     </div>
@@ -952,7 +954,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">4월 2일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">4월 2일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@kainalu_waves</span> 물이 그거 말고 할 줄 아는 게 있었냐.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -970,7 +972,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">4월 2일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">4월 2일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@vibe_ae</span> 증거 있냐.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -997,7 +999,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">4월 3일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">4월 3일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@liam_glacies</span> 편집했어.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -1013,7 +1015,7 @@ body.v-lock { overflow: hidden; }
     <header class="p-head">
       <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
       <div class="p-meta">
-        <div class="p-user"><span class="t">syndrome_official</span></div>
+        <div class="p-user"><span class="t">syndrome_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         
       </div>
       
@@ -1037,7 +1039,7 @@ body.v-lock { overflow: hidden; }
     </div>
     <div class="p-body">
       
-      <div class="p-cap"><b>syndrome_official</b> 족쇄.</div>
+      <div class="p-cap"><b>syndrome_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 족쇄.</div>
       
       <div class="p-time sec">2023년 12월 23일</div>
     </div>
@@ -1059,7 +1061,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">12월 23일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">12월 23일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@kainalu_waves</span> 넌 바닷물에 뇌까지 불었냐.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -1077,7 +1079,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">12월 23일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">12월 23일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@vibe_ae</span> 니 사춘기는 언제 끝나냐.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -1104,7 +1106,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">12월 24일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">12월 24일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@liam_glacies</span> 미쳤냐. 왜 니 손을 잡아.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -1129,7 +1131,7 @@ body.v-lock { overflow: hidden; }
     <header class="p-head">
       <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
       <div class="p-meta">
-        <div class="p-user"><span class="t">syndrome_official</span></div>
+        <div class="p-user"><span class="t">syndrome_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         
       </div>
       
@@ -1153,7 +1155,7 @@ body.v-lock { overflow: hidden; }
     </div>
     <div class="p-body">
       
-      <div class="p-cap"><b>syndrome_official</b> 몸풀기.</div>
+      <div class="p-cap"><b>syndrome_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 몸풀기.</div>
       
       <div class="p-time sec">2023년 5월 6일</div>
     </div>
@@ -1175,7 +1177,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">5월 6일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">5월 6일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@kainalu_waves</span> 질투는 바다에 가서 해. 거울이 버티는 건 내 얼굴이 아까워서야.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -1202,7 +1204,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">5월 6일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">5월 6일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@vibe_ae</span> 중2병 왔냐. 훈련실 녹은 건 바닥이 약해서야.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -1229,7 +1231,7 @@ body.v-lock { overflow: hidden; }
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">5월 7일</span><span class="sec">· 작성자</span></div>
+      <div class="c-h"><b>syndrome_official</b><svg class="vf" width="12" height="12" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sec">5월 7일</span><span class="sec">· 작성자</span></div>
       <div class="c-t"><span class="lk">@liam_glacies</span> 너랑 운동하면 내가 감기 걸려. 꺼져.</div>
       <div class="c-a"><span>답글 달기</span></div>
     </div>
@@ -1254,7 +1256,7 @@ body.v-lock { overflow: hidden; }
     <header class="p-head">
       <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
       <div class="p-meta">
-        <div class="p-user"><span class="t">syndrome_official</span></div>
+        <div class="p-user"><span class="t">syndrome_official</span><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         
       </div>
       
@@ -1277,7 +1279,7 @@ body.v-lock { overflow: hidden; }
     </div>
     <div class="p-body">
       
-      <div class="p-cap"><b>syndrome_official</b> 복귀.</div>
+      <div class="p-cap"><b>syndrome_official</b><svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 복귀.</div>
       
       <div class="p-time sec">2022년 10월 3일</div>
     </div>

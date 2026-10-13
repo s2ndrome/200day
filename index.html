@@ -3,110 +3,139 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>200 Days</title>
+<title>What's S</title>
 <meta name="description" content="SYNDROME ୨୧ LIA — 200일">
 <link rel="icon" href="img/yujin.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&family=Instrument+Serif:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&display=swap">
 <style>
+/* 신드롬.com 결: 흰 종이 + 그레인, 마이크로 타이포 헤더, 큰 글자 인덱스, 리본 하나 */
 :root {
-  --paper: #fbf8f6;
-  --card: #ffffff;
-  --ink: #141214;
-  --mid: #8e8a8d;
-  --hair: #ebe5e2;
-  --ring: linear-gradient(45deg, #feda75, #fa7e1e 30%, #d62976 60%, #962fbf 80%, #4f5bd5);
+  --paper: #ffffff;
+  --ink: #0f0f10;
+  --mid: #9b9b9f;
+  --hair: #ececee;
+  --blue: #2d46ff;
+  --sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, monospace;
   --serif: "Instrument Serif", "Times New Roman", serif;
-  --sans: -apple-system, BlinkMacSystemFont, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --paper: #0e0d0e; --card: #19171a; --ink: #f3eff0; --mid: #8f8a8e; --hair: #2a272b; }
+  --ko: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+  color-scheme: light;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; min-height: 100dvh; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+body { margin: 0; min-height: 100dvh; background: var(--paper); color: var(--ink); font-family: var(--sans), var(--ko); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 1px solid var(--blue); outline-offset: 3px; }
 
-/* 머리말 */
-.hero { text-align: center; padding: calc(56px + env(safe-area-inset-top, 0px)) 16px 36px; }
-.eyebrow { font-size: 11px; letter-spacing: .32em; color: var(--mid); }
-.num { font: 400 clamp(112px, 34vw, 200px)/.82 var(--serif); letter-spacing: -.04em; margin: 18px 0 4px; }
-.num i { font-style: italic; }
-.days { font: italic 400 clamp(26px, 7vw, 36px)/1 var(--serif); }
-.pair { margin-top: 22px; font-size: 12px; letter-spacing: .24em; }
-.pair span { color: #d62976; }
-.hint { margin-top: 10px; font-size: 13px; color: var(--mid); }
+.grain { position: fixed; inset: -50%; pointer-events: none; z-index: 50; opacity: .045; background-size: 160px; animation: grain 1s steps(6) infinite; }
+@keyframes grain { 0% { transform: translate(0,0); } 33% { transform: translate(-3%, 2%); } 66% { transform: translate(2%, -3%); } }
+.ribbon { position: fixed; right: -6vw; top: 18vh; width: min(520px, 46vw); mix-blend-mode: multiply; opacity: .75; pointer-events: none; z-index: 0; transform: rotate(-24deg); }
+.ribbon img { display: block; width: 100%; }
 
-/* 모바일: 계정 카드 */
-.list { list-style: none; margin: 0 auto; padding: 0 16px 56px; max-width: 520px; display: grid; gap: 12px; }
-.card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 18px; background: var(--card); border: 1px solid var(--hair); transition: transform .15s ease; -webkit-tap-highlight-color: transparent; }
-.card:active { transform: scale(.98); }
-.ring { width: 64px; height: 64px; border-radius: 50%; padding: 2.5px; background: var(--ring); }
-.ring img, .ring .empty { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--card); object-fit: cover; display: block; background: var(--hair); }
-.card.soon .ring { background: var(--hair); }
+/* 머리 */
+.head { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr auto; gap: 20px; padding: calc(18px + env(safe-area-inset-top, 0px)) 24px 0; font: 400 11px/1.35 var(--sans); }
+.head span { color: var(--mid); }
+.h3 { text-align: right; }
+.h3::after { content: ""; display: block; width: 60px; height: 1px; margin: 10px 0 0 auto; background: var(--hair); }
+
+/* 큰 글자 */
+.hero { position: relative; z-index: 2; padding: 13vh 24px 9vh; }
+.title { margin: 0; font: 400 clamp(64px, 11vw, 150px)/.9 var(--sans); letter-spacing: -.055em; display: flex; align-items: flex-start; gap: 10px; }
+.title em { font: italic 400 1.04em/.9 var(--serif); letter-spacing: -.02em; }
+.title sup, .line sup { font: 400 11px/1 var(--mono); letter-spacing: 0; margin-top: .9em; color: var(--mid); }
+.line { margin-top: 6px; font: italic 400 clamp(30px, 4.6vw, 60px)/1 var(--serif); display: flex; align-items: flex-start; gap: 8px; }
+.line sup { margin-top: .5em; }
+.note { margin-top: 28px; max-width: 260px; font: 300 12px/1.65 var(--ko); }
+.note b { display: block; font: 400 11px var(--mono); color: var(--mid); margin-bottom: 6px; letter-spacing: .04em; }
+
+/* 계정 목록 */
+.list { position: relative; z-index: 2; list-style: none; margin: 0; padding: 0 24px 72px; max-width: 760px; }
+.list li { border-top: 1px solid var(--hair); }
+.list li:last-child { border-bottom: 1px solid var(--hair); }
+.row { display: grid; grid-template-columns: 30px 48px 1fr auto 18px; align-items: center; gap: 14px; padding: 18px 0; transition: padding .35s cubic-bezier(.2,.8,.2,1); -webkit-tap-highlight-color: transparent; }
+.row:hover { padding-left: 10px; }
+.rn { font: 400 10px var(--mono); color: var(--mid); align-self: start; padding-top: 6px; }
+.av { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; border: 1px solid var(--hair); background: var(--hair); }
+.av img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .meta { min-width: 0; }
-.meta small { display: block; font-size: 11px; letter-spacing: .2em; color: var(--mid); }
-.meta b { display: block; margin-top: 3px; font-size: 16px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.meta span { display: block; margin-top: 2px; font-size: 13px; color: var(--mid); }
-.thumbs { display: grid; grid-template-columns: repeat(3, 34px); gap: 2px; border-radius: 6px; overflow: hidden; }
-.bw, .bw img { filter: grayscale(1); }
-.ring.bw { filter: none; background: #141214; }
-.thumbs img, .thumbs i { width: 34px; height: 34px; object-fit: cover; display: block; background: var(--hair); }
+.meta b { display: block; font: 400 clamp(20px, 2.6vw, 28px)/1.05 var(--sans); letter-spacing: -.04em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.meta small { display: block; margin-top: 5px; font: 400 10px var(--mono); color: var(--mid); letter-spacing: .06em; }
+.thumbs { display: grid; grid-template-columns: repeat(3, 34px); gap: 2px; }
+.thumbs img { width: 34px; height: 34px; object-fit: cover; display: block; background: var(--hair); filter: saturate(.85) contrast(1.05); }
+.bw, .bw img { filter: grayscale(1) !important; }
+.ga { font: 400 14px var(--mono); color: var(--mid); transition: color .3s, transform .3s; }
+.row:hover .ga { color: var(--blue); transform: translateX(4px); }
+@media (max-width: 420px) { .thumbs { display: none; } .row { grid-template-columns: 24px 44px 1fr 18px; } .av { width: 44px; height: 44px; } }
 
-/* 데스크톱: 세 대의 폰을 나란히 */
+/* 컴퓨터: 폰 세 대 */
 .phones { display: none; }
 @media (min-width: 1180px) {
-  .hero { padding-top: 48px; padding-bottom: 28px; }
-  .num { font-size: 150px; }
-  .hint { display: none; }
+  .hero { padding: 9vh 24px 6vh; }
   .list { display: none; }
-  .phones { display: flex; justify-content: center; gap: 40px; padding: 8px 24px 64px; }
-  .phone { display: flex; flex-direction: column; align-items: center; gap: 14px; }
-  .frame { width: 344px; height: 720px; border-radius: 48px; padding: 12px; background: #141214; box-shadow: 0 30px 60px -30px rgba(40, 20, 30, .45); }
-  .frame iframe { width: 100%; height: 100%; border: 0; border-radius: 37px; background: #fff; display: block; }
-  .phone a { font-size: 12px; letter-spacing: .2em; color: var(--mid); }
-  .phone a:hover { color: var(--ink); }
+  .phones { position: relative; z-index: 2; display: flex; justify-content: center; gap: 44px; padding: 0 24px 80px; }
+  .phone { display: flex; flex-direction: column; gap: 14px; }
+  .frame { width: 330px; height: 690px; border: 1px solid var(--ink); border-radius: 44px; padding: 10px; background: var(--paper); overflow: hidden; }
+  .screen { width: 100%; height: 100%; border-radius: 34px; overflow: hidden; position: relative; background: #fff; }
+  /* 390px 폰 화면을 그대로 그린 뒤 줄여서 넣어요 → 글씨도 같이 작아짐 */
+  .screen iframe { position: absolute; left: 0; top: 0; width: 390px; height: calc(100% / .7949); border: 0; transform: scale(.7949); transform-origin: 0 0; }
+  .cap { display: flex; justify-content: space-between; font: 400 10px var(--mono); color: var(--mid); letter-spacing: .06em; padding: 0 6px; }
+  .cap a:hover { color: var(--blue); }
 }
+@media (prefers-reduced-motion: reduce) { .grain { animation: none; } }
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="eyebrow">D + 200</div>
-  <div class="num">2<i>0</i>0</div>
-  <div class="days">days</div>
-  <div class="pair">SYNDROME <span>୨୧</span> LIA</div>
-  <p class="hint">눌러서 인스타그램을 열어보세요</p>
+<div class="grain" id="grain" aria-hidden="true"></div>
+<div class="ribbon" aria-hidden="true"><img src="img/ribbon.jpg" alt=""></div>
+
+<header class="head">
+  <a href="./">SYNDROME ୨୧ LIA</a>
+  <div class="h3">D + 200<br><span id="clock">--:--:--</span></div>
 </header>
 
-<!-- 계정 목록 -->
+<section class="hero">
+  <h1 class="title">What's <em>S</em><sup>(200)</sup></h1>
+  <div class="line">days, three windows<sup>(03)</sup></div>
+  <p class="note"><b>INDEX — 2026</b>세 개의 인스타그램. 하나씩 눌러서 열어보세요.</p>
+</section>
+
+<!-- 계정 목록 (모바일) -->
 <ul class="list">
-  <li><a class="card" href="ig/1.html">
-    <span class="ring"><img src="img/yujin.jpg" alt=""></span>
-    <span class="meta"><small>01</small><b>yujin_official</b><span>유진 (Yujin)</span></span>
+  <li><a class="row" href="ig/1.html">
+    <span class="rn">(01)</span>
+    <span class="av"><img src="img/yujin.jpg" alt=""></span>
+    <span class="meta"><b>yujin_official</b><small>유진 (Yujin)</small></span>
     <span class="thumbs"><img src="https://i.imgur.com/fcbDlEu.jpg" alt="" loading="lazy"><img src="https://i.imgur.com/EuD1tio.jpg" alt="" loading="lazy"><img src="https://i.imgur.com/qs1qgoM.jpg" alt="" loading="lazy"></span>
+    <span class="ga">→</span>
   </a></li>
-  <li><a class="card" href="ig/2.html">
-    <span class="ring bw"><img src="https://i.imgur.com/VKHxeAc.jpg" alt=""></span>
-    <span class="meta"><small>02</small><b>ruinandnoir</b><span>Y</span></span>
+  <li><a class="row" href="ig/2.html">
+    <span class="rn">(02)</span>
+    <span class="av bw"><img src="https://i.imgur.com/VKHxeAc.jpg" alt=""></span>
+    <span class="meta"><b>ruinandnoir</b><small>Y</small></span>
     <span class="thumbs"><img class="bw" src="https://i.imgur.com/VKHxeAc.jpg" alt="" loading="lazy"><img src="https://i.imgur.com/HJJYRFS.jpg" alt="" loading="lazy"><img class="bw" src="https://i.imgur.com/ypvRRe8.jpg" alt="" loading="lazy"></span>
+    <span class="ga">→</span>
   </a></li>
-  <li><a class="card" href="ig/3.html">
-    <span class="ring"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""></span>
-    <span class="meta"><small>03</small><b>syndrome_official</b><span>SYNDROME</span></span>
+  <li><a class="row" href="ig/3.html">
+    <span class="rn">(03)</span>
+    <span class="av"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""></span>
+    <span class="meta"><b>syndrome_official</b><small>SYNDROME</small></span>
     <span class="thumbs"><img src="https://i.imgur.com/t6VdSEv.jpg" alt="" loading="lazy"><img src="https://i.imgur.com/VLEPja6.jpg" alt="" loading="lazy"><img src="https://i.imgur.com/4X8POqB.jpg" alt="" loading="lazy"></span>
+    <span class="ga">→</span>
   </a></li>
 </ul>
 
+<!-- 폰 세 대 (컴퓨터) -->
 <section class="phones" aria-label="인스타그램 3개">
-  <div class="phone"><div class="frame"><iframe data-src="ig/1.html" title="인스타그램 01"></iframe></div><a href="ig/1.html">01 · 크게 보기</a></div>
-  <div class="phone"><div class="frame"><iframe data-src="ig/2.html" title="인스타그램 02"></iframe></div><a href="ig/2.html">02 · 크게 보기</a></div>
-  <div class="phone"><div class="frame"><iframe data-src="ig/3.html" title="인스타그램 03"></iframe></div><a href="ig/3.html">03 · 크게 보기</a></div>
+  <div class="phone"><div class="frame"><div class="screen"><iframe data-src="ig/1.html" title="인스타그램 01"></iframe></div></div><div class="cap"><span>(01) yujin_official</span><a href="ig/1.html">OPEN →</a></div></div>
+  <div class="phone"><div class="frame"><div class="screen"><iframe data-src="ig/2.html" title="인스타그램 02"></iframe></div></div><div class="cap"><span>(02) ruinandnoir</span><a href="ig/2.html">OPEN →</a></div></div>
+  <div class="phone"><div class="frame"><div class="screen"><iframe data-src="ig/3.html" title="인스타그램 03"></iframe></div></div><div class="cap"><span>(03) syndrome_official</span><a href="ig/3.html">OPEN →</a></div></div>
 </section>
 
 <script>
-// 넓은 화면에서만 폰 화면(iframe)을 불러와서 모바일은 가볍게 유지
 (function () {
+  // 넓은 화면에서만 폰 화면(iframe)을 불러와서 모바일은 가볍게 유지
   var mq = window.matchMedia('(min-width: 1180px)');
   function load() {
     if (!mq.matches) return;
@@ -114,6 +143,15 @@ a { color: inherit; text-decoration: none; }
   }
   load();
   if (mq.addEventListener) mq.addEventListener('change', load);
+
+  // 시계
+  function clk() { var d = new Date(), p = function (v) { return String(v).padStart(2, '0'); }; document.getElementById('clock').textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()); }
+  clk(); setInterval(clk, 1000);
+
+  // 그레인
+  var g = document.createElement('canvas'), gx = g.getContext('2d'); g.width = g.height = 160; var id = gx.createImageData(160, 160);
+  for (var i = 0; i < id.data.length; i += 4) { var v = Math.random() * 255; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
+  gx.putImageData(id, 0, 0); document.getElementById('grain').style.backgroundImage = 'url(' + g.toDataURL() + ')';
 })();
 </script>
 </body>
