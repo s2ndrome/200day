@@ -247,6 +247,8 @@ body.v-lock { overflow: hidden; }
 
 .c-l { width: auto; min-width: 22px; white-space: nowrap; }
 .v-home { display: flex; color: inherit; margin-left: -6px; }
+.vid-play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: rgba(0,0,0,.42); display: flex; align-items: center; justify-content: center; padding-left: 4px; }
+.vid-mute { position: absolute; right: 12px; bottom: 12px; width: 28px; height: 28px; border-radius: 50%; background: rgba(18,18,18,.7); display: flex; align-items: center; justify-content: center; }
 </style>
 </head>
 <body class="v-light">
@@ -279,7 +281,7 @@ body.v-lock { overflow: hidden; }
     <div class="a-btns"><div class="blue">팔로우</div><div>메시지</div><div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" ><path d="M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2.5 21c.8-4 3.8-6 7.5-6s6.7 2 7.5 6M19.5 8v6M16.5 11h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
     
     <div class="a-tabs"><div class="on"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M2.5 7.5h19M8.5 2.5l3 5M14.5 2.5l3 5M6.5 2.5h11a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4h-11a4 4 0 0 1-4-4v-11a4 4 0 0 1 4-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11.3v6.2l5-3.1z" fill="currentColor"/></svg></div><div><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M10.2 18.3 12 21l1.8-2.7H19a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11.3a2 2 0 0 0 2 2zM12 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM7.5 15c.7-1.9 2.4-3 4.5-3s3.8 1.1 4.5 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-    <div class="a-grid"><div data-go="s-post-0"><img src="https://i.imgur.com/t6VdSEv.jpg" alt="" style="object-position:17.67% 100.00%;transform-origin:17.67% 100.00%;transform:scale(1.374)"></div><div data-go="s-post-1"><img src="https://i.imgur.com/VLEPja6.jpg" alt="" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)"></div><div data-go="s-post-2"><img src="https://i.imgur.com/4X8POqB.jpg" alt="" style="object-position:45.16% 0.00%;transform-origin:45.16% 0.00%;transform:scale(1.174)"><span class="g-multi"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 3h11a2 2 0 0 1 2 2v11" fill="none" stroke="#fff" stroke-width="2"/><rect x="3" y="7" width="14" height="14" rx="2" fill="#fff"/></svg></span></div><div data-go="s-post-3"><img src="https://i.imgur.com/DW2Ut5m.jpg" alt="" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)"></div><div data-go="s-post-4"><img src="https://i.imgur.com/Xb6klP0.jpg" alt="" style="object-position:42.99% 100.00%;transform-origin:42.99% 100.00%;transform:scale(1.578)"></div><div data-go="s-post-5"><img src="https://i.imgur.com/OFFSvPc.jpg" alt="" style="object-position:11.94% 99.61%;transform-origin:11.94% 99.61%;transform:scale(2.069)"></div><div data-go="s-post-6"><img src="https://i.imgur.com/uUwh9CU.jpg" alt="" style="object-position:66.30% 100.00%;transform-origin:66.30% 100.00%;transform:scale(1.646)"></div><div data-go="s-post-7"><img src="https://i.imgur.com/xn5zkOo.jpg" alt="" style="object-position:50.00% 56.55%;transform-origin:50.00% 56.55%;transform:scale(1.000)"></div><div data-go="s-post-8"><img src="https://i.imgur.com/2GppK31.jpg" alt="" style="object-position:50.00% 17.14%;transform-origin:50.00% 17.14%;transform:scale(1.000)"></div></div>
+    <div class="a-grid"><div data-go="s-post-0"><img src="https://i.imgur.com/t6VdSEv.jpg" alt="" style="object-position:17.67% 100.00%;transform-origin:17.67% 100.00%;transform:scale(1.374)"></div><div data-go="s-post-1"><img src="https://i.imgur.com/VLEPja6.jpg" alt="" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)"></div><div data-go="s-post-2"><img src="https://i.imgur.com/4X8POqB.jpg" alt="" style="object-position:45.16% 0.00%;transform-origin:45.16% 0.00%;transform:scale(1.174)"><span class="g-multi"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 3h11a2 2 0 0 1 2 2v11" fill="none" stroke="#fff" stroke-width="2"/><rect x="3" y="7" width="14" height="14" rx="2" fill="#fff"/></svg></span></div><div data-go="s-post-3"><img src="https://i.imgur.com/DW2Ut5m.jpg" alt="" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)"></div><div data-go="s-post-4"><img src="https://i.imgur.com/Xb6klP0.jpg" alt="" style="object-position:42.99% 100.00%;transform-origin:42.99% 100.00%;transform:scale(1.578)"></div><div data-go="s-post-5"><img src="https://i.imgur.com/OFFSvPc.jpg" alt="" style="object-position:11.94% 99.61%;transform-origin:11.94% 99.61%;transform:scale(2.069)"><span class="g-multi"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M2.5 7.5h19M8.5 2.5l3 5M14.5 2.5l3 5M6.5 2.5h11a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4h-11a4 4 0 0 1-4-4v-11a4 4 0 0 1 4-4z" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11.3v6.2l5-3.1z" fill="#fff"/></svg></span></div><div data-go="s-post-6"><img src="https://i.imgur.com/uUwh9CU.jpg" alt="" style="object-position:66.30% 100.00%;transform-origin:66.30% 100.00%;transform:scale(1.646)"></div><div data-go="s-post-7"><img src="https://i.imgur.com/xn5zkOo.jpg" alt="" style="object-position:50.00% 56.55%;transform-origin:50.00% 56.55%;transform:scale(1.000)"></div><div data-go="s-post-8"><img src="https://i.imgur.com/2GppK31.jpg" alt="" style="object-position:50.00% 17.14%;transform-origin:50.00% 17.14%;transform:scale(1.000)"></div></div>
     
   </div></section>
 <section class="v-scr" id="s-post-0" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>syndrome_official</small><b>게시물</b></div><span style="width:26px"></span></div>
@@ -301,7 +303,6 @@ body.v-lock { overflow: hidden; }
     <div class="p-act">
       <div class="p-act-l">
         <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="a" data-open="0"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         
         <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
@@ -316,46 +317,6 @@ body.v-lock { overflow: hidden; }
       <div class="p-time sec">2026년 4월 23일</div>
     </div>
   </article></div></section>
-<div class="v-ov" id="ov-c-0" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
-  <div class="sheet">
-    <div class="grab" data-close></div>
-    <div class="s-title">댓글</div>
-    <div class="s-list">
-  <div class="c">
-    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
-    <div class="c-b">
-      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
-      <div class="c-t">신드롬을 사랑하자</div>
-      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
-      
-    </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
-  </div>
-  <div class="c rp">
-    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
-    <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
-      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
-      <div class="c-a"><span>답글 달기</span></div>
-      
-    </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
-  </div>
-  <div class="c">
-    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
-    <div class="c-b">
-      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
-      <div class="c-t">성유진을 아껴주자</div>
-      <div class="c-a"><span>답글 달기</span></div>
-      <div class="c-more"><i></i>답글 2개 더 보기</div>
-    </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
-  </div></div>
-    <div class="s-foot">
-      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
-      <div class="s-in"><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><div class="s-ph"><span>syndrome_official님에게 댓글 추가...</span></div></div>
-    </div>
-  </div></div></div>
 <section class="v-scr" id="s-post-1" hidden><div style="--fs:0.85" class="ig " data-theme="light"><div class="v-top"><button data-back aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24" ><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="v-tt"><small>syndrome_official</small><b>게시물</b></div><span style="width:26px"></span></div>
   <article class="post">
     <header class="p-head">
@@ -472,32 +433,65 @@ body.v-lock { overflow: hidden; }
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
-      <div class="c-t">신드롬을 사랑하자</div>
-      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
-      
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">2일</span></div>
+      <div class="c-t">WAIT. couple pajamas?? On YOU?? 😭☁️ The guy who said I only wear designer is in a puppy-ear onesie. Screenshot taken. Framed. Sending it to every ARCH branch worldwide.</div>
+      <div class="c-a"><span>답글 달기</span></div>
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1.2만</span></div>
   </div>
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
-      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-h"><b>syndrome_official</b><span class="sec">8시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@kainalu_waves</span> 외롭냐? 꺼져</div>
       <div class="c-a"><span>답글 달기</span></div>
-      
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3,918</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">5시간</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> ...I can't even argue with that. Technically correct 💀</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2,640</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">3시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@kainalu_waves</span> 캡처 퍼뜨리면 니 서핑보드 숯 된다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1,377</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">2시간</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> Worth it. Aloha, my sweet surfboard 🏄‍♂️🔥</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>962</span></div>
   </div>
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
-      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-h"><b>vibe_ae</b><span class="sec">1일</span></div>
+      <div class="c-t">행님이 캡션에 사랑한다고 적는 날이 다 오네. 해가 서쪽에서 떴나. 세상 말세다 진짜... 하모니 가이드님들 고생 많으십니다. 저 불덩어리 비위 맞춰주느라.</div>
       <div class="c-a"><span>답글 달기</span></div>
-      <div class="c-more"><i></i>답글 2개 더 보기</div>
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>8,431</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">3시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@vibe_ae</span> 말세 맞으니까 넌 조용히 해라.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1,377</span></div>
   </div></div>
     <div class="s-foot">
       <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
@@ -546,32 +540,191 @@ body.v-lock { overflow: hidden; }
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
-      <div class="c-t">신드롬을 사랑하자</div>
-      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
-      
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">2일</span></div>
+      <div class="c-t">My dumb puppy 🐶 Bro, you sneaked into Harmony just to take a photo of her back? ARCH security is crying rn. Also that mug is cute, not gonna lie.</div>
+      <div class="c-a"><span>답글 달기</span></div>
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1.2만</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">8시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@kainalu_waves</span> 몰래 아니고 당당하게 들어갔어. 보안팀이 문 열어줬다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3,918</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">5시간</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> They opened the door because they're scared of you, brah. That's not permission, that's survival 😂</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2,640</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">3시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@kainalu_waves</span> 결과적으로 열렸으면 허락이야.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1,377</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">1일</span></div>
+      <div class="c-t">행님 저거 찍을라꼬 하모니 복도에서 십 분 넘게 서 있었다. 지나가던 가이드들이 다 쫄아가꼬 벽에 붙어 걷더라. 하모니 냉기 구역에서 혼자 열 뿜으니까 복도 경고등까지 켜졌다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>8,431</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">3시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@vibe_ae</span> 넌 그 시간에 왜 하모니에 있었는데.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1,377</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">2시간</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> 정기검진. 행님은 검진도 아닌데 와 있었노.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>962</span></div>
   </div>
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
       <div class="c-h"><b>syndrome_official</b><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
-      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-t"><span class="lk">@vibe_ae</span> 파트너 검진</div>
       <div class="c-a"><span>답글 달기</span></div>
-      
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>503</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">45분</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> 그런 검진은 없다. 행님 진짜 웃긴다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>218</span></div>
   </div>
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
-      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-h"><b>liam_glacies</b><span class="sec">20시간</span></div>
+      <div class="c-t">지수 씨… 일한다. 열심히. 머리… 크다. 근데… 바보… 왜? 지수 씨… 똑똑하다. S급.</div>
       <div class="c-a"><span>답글 달기</span></div>
-      <div class="c-more"><i></i>답글 2개 더 보기</div>
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>5,207</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@liam_glacies</span> 바보 맞아. 나만 볼 때 바보라서 바보야.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>503</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>liam_glacies</b><span class="sec">45분</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> ...한국어… 어렵다. 바보가… 칭찬이다…?</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>218</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">30분</span></div>
+      <div class="c-t"><span class="lk">@liam_glacies</span> Only when he says it, Liam. Don't try it at home. He'll burn you 🔥</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>liam_glacies</b><span class="sec">12분</span></div>
+      <div class="c-t"><span class="lk">@kainalu_waves</span> 알겠다… 나는… 지수 씨… 똑똑하다고만… 하겠다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>jisuzzang</b><span class="sec">14시간</span></div>
+      <div class="c-t">헉… 오빠아 이거 언제 찍었어…? 나 그때 엑셀 수식 틀려서 울상이었는데… 뒷모습이라 다행이다… 근데 바보는 너무하잖아… 🥺</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3,918</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">30분</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@jisuzzang</span> 수식 세 번 틀리고 머그컵에 대고 한숨 쉬는 거 다 봤어.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>jisuzzang</b><span class="sec">12분</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> 으에… 그것까지 봤어…? 그럼 도와주지 ㅡㅡ</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">12분</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@jisuzzang</span> 도와주면 니 그 표정 끝나잖아. 아까워서 못 했다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>jisuzzang</b><span class="sec">12분</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> 오빠 진짜 나쁘다!! 그래도 바보 강아지는 좋음 ㅎㅎ</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">12분</span></div>
+      <div class="c-t"><span class="lk">@jisuzzang</span> 그걸 좋다 카면 행님 평생 그렇게 부른다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">12분</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@vibe_ae</span> 원래 평생 부를 거였어.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
   </div></div>
     <div class="s-foot">
       <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
@@ -620,32 +773,128 @@ body.v-lock { overflow: hidden; }
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
-      <div class="c-t">신드롬을 사랑하자</div>
-      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
-      
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">2일</span></div>
+      <div class="c-t">The fluffy one owns the house now 🐶 Respect. Finally someone who can beat you</div>
+      <div class="c-a"><span>답글 달기</span></div>
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1.2만</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">8시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@kainalu_waves</span> 얜 이겨도 돼. 넌 안 돼.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3,918</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">1일</span></div>
+      <div class="c-t">와인잔 들고 개한테 진 사람. 뱅가드 망했네.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>8,431</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">3시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@vibe_ae</span> 진 게 아니라 양보한 거야. 단어 똑바로 써.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1,377</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">2시간</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> 양보한 사람 표정이 와 저렇게 억울하노. 사진 확대해봐라.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>962</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>liam_glacies</b><span class="sec">20시간</span></div>
+      <div class="c-t">별이… 나 안다! 나… 별이 친구. 귀… 하나. 그래도… 세상에서 제일… 귀엽다. 🐶❄️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>5,207</span></div>
   </div>
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
       <div class="c-h"><b>syndrome_official</b><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
-      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-t"><span class="lk">@liam_glacies</span> 친구 아니고 우리 딸이야. 선 지켜.</div>
       <div class="c-a"><span>답글 달기</span></div>
-      
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>503</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>liam_glacies</b><span class="sec">45분</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> …삼촌? 삼촌은… 괜찮다?</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>218</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">30분</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@liam_glacies</span> …생각해볼게.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
   </div>
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
-      <div class="c-t">성유진을 아껴주자</div>
+      <div class="c-h"><b>jisuzzang</b><span class="sec">14시간</span></div>
+      <div class="c-t">별이가 오빠 발 따뜻해서 맨날 저기서 자는 거야… 오빠도 사실 별이 깰까 봐 한 시간 동안 안 움직였잖아 ~ 🐾💙</div>
       <div class="c-a"><span>답글 달기</span></div>
-      <div class="c-more"><i></i>답글 2개 더 보기</div>
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3,918</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">30분</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@jisuzzang</span> 다리 저려서 못 움직인 거야.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>jisuzzang</b><span class="sec">12분</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> 거짓말 ㅋㅋ 오빠 별이 자는 거 몰래 동영상도 찍었잖아 나 다 봤슈</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">12분</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@jisuzzang</span> 그건 증거 수집이야. 자리 뺏긴 증거.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">12분</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> Bro is a whole softie now 🥹 The fire turned into a heater for a puppy lol</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>87</span></div>
   </div></div>
     <div class="s-foot">
       <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
@@ -663,8 +912,8 @@ body.v-lock { overflow: hidden; }
       
       <svg width="24" height="24" viewBox="0 0 24 24" ><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
     </header>
-    <div class="p-media" style="aspect-ratio:1/1">
-      <img src="https://i.imgur.com/OFFSvPc.jpg" alt="" style="object-position:15.46% 92.44%;transform-origin:15.46% 92.44%;transform:scale(1.919)">
+    <div class="p-media vid" style="aspect-ratio:1/1">
+      <img src="https://i.imgur.com/OFFSvPc.jpg" alt="" style="object-position:15.46% 92.44%;transform-origin:15.46% 92.44%;transform:scale(1.919)"><span class="vid-play"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span><span class="vid-mute"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM16.5 9.5l5 5M21.5 9.5l-5 5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       
     </div>
     
@@ -694,32 +943,65 @@ body.v-lock { overflow: hidden; }
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>zzunsiki_1</b><span class="sec">2시간</span></div>
-      <div class="c-t">신드롬을 사랑하자</div>
-      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
-      
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">2일</span></div>
+      <div class="c-t">Okay that was kinda sick ngl 🔥 But you left me the cleanup again, brah. My waves aren't your fire extinguisher</div>
+      <div class="c-a"><span>답글 달기</span></div>
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1.2만</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">8시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@kainalu_waves</span> 물이 그거 말고 할 줄 아는 게 있었냐.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3,918</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">1일</span></div>
+      <div class="c-t">바람 방향 내가 틀어줬는데 지 혼자 다 한 척하네. 기가 찬다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>8,431</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">3시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@vibe_ae</span> 증거 있냐.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1,377</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">2시간</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> 영상 3초 보면 내 바람에 불길 꺾이는 거 다 보인다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>962</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>liam_glacies</b><span class="sec">20시간</span></div>
+      <div class="c-t">나는… 얼음벽. 옆에… 있었다. 영상에… 안 나왔다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>5,207</span></div>
   </div>
   <div class="c rp">
     <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
     <div class="c-b">
       <div class="c-h"><b>syndrome_official</b><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
-      <div class="c-t"><span class="lk">@zzunsiki_1</span> 고마워 ❤️</div>
+      <div class="c-t"><span class="lk">@liam_glacies</span> 편집했어.</div>
       <div class="c-a"><span>답글 달기</span></div>
-      
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
-  </div>
-  <div class="c">
-    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
-    <div class="c-b">
-      <div class="c-h"><b>zzunsiki_2</b><span class="sec">45분</span></div>
-      <div class="c-t">성유진을 아껴주자</div>
-      <div class="c-a"><span>답글 달기</span></div>
-      <div class="c-more"><i></i>답글 2개 더 보기</div>
-    </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>503</span></div>
   </div></div>
     <div class="s-foot">
       <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
@@ -768,22 +1050,74 @@ body.v-lock { overflow: hidden; }
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>fan_5</b><span class="sec">4월 3일</span></div>
-      <div class="c-t">일하는 남자 섹시하다... 미간 주름마저 사랑해...</div>
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">2일</span></div>
+      <div class="c-t">Deep. Very deep. Like the ocean but less fun 🙄 Mahalo for the poetry, Mr. Drama King</div>
       <div class="c-a"><span>답글 달기</span></div>
-      
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>12</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1.2만</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">8시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@kainalu_waves</span> 넌 바닷물에 뇌까지 불었냐.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3,918</span></div>
   </div>
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>actress_park</b><span class="sec">4월 3일</span></div>
-      <div class="c-t">유진 씨, 오늘 정말 멋졌어요! 우리 호흡 잘 맞춰봐요! 파이팅!</div>
+      <div class="c-h"><b>vibe_ae</b><span class="sec">1일</span></div>
+      <div class="c-t">혼자 감성 오지네. 새벽 세 시에 올렸제? 딱 보이네.</div>
       <div class="c-a"><span>답글 달기</span></div>
-      <div class="c-more"><i></i>답글 2개 더 보기</div>
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>32</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>8,431</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">3시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@vibe_ae</span> 니 사춘기는 언제 끝나냐.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1,377</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">2시간</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> 행님 사춘기부터 끝내고 와라.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>962</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>liam_glacies</b><span class="sec">20시간</span></div>
+      <div class="c-t">손… 뜨겁다? 내 손… 차갑다. 잡으면… 딱 좋다! ✋❄️</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>5,207</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@liam_glacies</span> 미쳤냐. 왜 니 손을 잡아.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>503</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">45분</span></div>
+      <div class="c-t"><span class="lk">@liam_glacies</span> LMAOOO 🤣 Liam with the pickup line</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>218</span></div>
   </div></div>
     <div class="s-foot">
       <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
@@ -832,12 +1166,83 @@ body.v-lock { overflow: hidden; }
   <div class="c">
     <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
     <div class="c-b">
-      <div class="c-h"><b>vibe_official</b><span class="sec">2시간</span></div>
-      <div class="c-t">와 ㅋㅋ 행님 땀 흘리는 거 처음 봄. 내일 비 오겠네.</div>
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">2일</span></div>
+      <div class="c-t">Bro posted his abs and called it a warm up 🤙 Who are you flexing for, brah? Mirror's gonna crack lol</div>
       <div class="c-a"><span>답글 달기</span></div>
-      
     </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>532</span></div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1.2만</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">8시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@kainalu_waves</span> 질투는 바다에 가서 해. 거울이 버티는 건 내 얼굴이 아까워서야.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3,918</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>kainalu_waves</b><span class="sec">5시간</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> Lol the ego is bigger than the training dome 🌊</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2,640</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">1일</span></div>
+      <div class="c-t">몸풀기라 카면서 훈련실 반은 녹여놨데. 정비팀 형님들 지금 울고 있다. 바닥 니가 갈아라.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>8,431</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">3시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@vibe_ae</span> 중2병 왔냐. 훈련실 녹은 건 바닥이 약해서야.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1,377</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>vibe_ae</b><span class="sec">2시간</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> 됐다 마. 말을 말자.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>962</span></div>
+  </div>
+  <div class="c">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>liam_glacies</b><span class="sec">20시간</span></div>
+      <div class="c-t">신드롬… 근육… 좋다. 나도… 운동. 같이...</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>5,207</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>syndrome_official</b><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
+      <div class="c-t"><span class="lk">@liam_glacies</span> 너랑 운동하면 내가 감기 걸려. 꺼져.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>503</span></div>
+  </div>
+  <div class="c rp">
+    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
+    <div class="c-b">
+      <div class="c-h"><b>liam_glacies</b><span class="sec">45분</span></div>
+      <div class="c-t"><span class="lk">@syndrome_official</span> …슬프다.</div>
+      <div class="c-a"><span>답글 달기</span></div>
+    </div>
+    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>218</span></div>
   </div></div>
     <div class="s-foot">
       <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
@@ -863,7 +1268,6 @@ body.v-lock { overflow: hidden; }
     <div class="p-act">
       <div class="p-act-l">
         <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="a" data-open="8"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         
         <span class="a"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M22 3 9.218 10.083M11.698 20.334 22 3.001H2l7.218 7.083z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
@@ -878,46 +1282,6 @@ body.v-lock { overflow: hidden; }
       <div class="p-time sec">2022년 10월 3일</div>
     </div>
   </article></div></section>
-<div class="v-ov" id="ov-c-8" data-closable hidden><div class="v-dim" data-close></div><div style="--fs:0.85" class="ig v-sheet" data-theme="light">
-  <div class="sheet">
-    <div class="grab" data-close></div>
-    <div class="s-title">댓글</div>
-    <div class="s-list">
-  <div class="c">
-    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
-    <div class="c-b">
-      <div class="c-h"><b>friend_01</b><span class="sec">2시간</span></div>
-      <div class="c-t">분위기 너무 좋다 😍</div>
-      <div class="c-a"><span>답글 달기</span><span class="al"><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><svg width="10" height="10" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg></span></div>
-      
-    </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="#ff3040"/></svg><span>12</span></div>
-  </div>
-  <div class="c rp">
-    <img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt="">
-    <div class="c-b">
-      <div class="c-h"><b>syndrome_official</b><span class="sec">1시간</span><span class="sec">· 작성자</span></div>
-      <div class="c-t"><span class="lk">@friend_01</span> 고마워 ❤️</div>
-      <div class="c-a"><span>답글 달기</span></div>
-      
-    </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3</span></div>
-  </div>
-  <div class="c">
-    <img class="av" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23c7c7cc%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2239%22%20r%3D%2217%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M15%2094c3-20%2018-30%2035-30s32%2010%2035%2030z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="">
-    <div class="c-b">
-      <div class="c-h"><b>hello.world</b><span class="sec">45분</span></div>
-      <div class="c-t">여기 어디야?? 나도 가볼래</div>
-      <div class="c-a"><span>답글 달기</span></div>
-      <div class="c-more"><i></i>답글 2개 더 보기</div>
-    </div>
-    <div class="c-l"><svg width="14" height="14" viewBox="0 0 24 24" ><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
-  </div></div>
-    <div class="s-foot">
-      <div class="s-emo"><span>❤️</span><span>🙌</span><span>🔥</span><span>👏</span><span>😢</span><span>😍</span><span>😮</span><span>😂</span></div>
-      <div class="s-in"><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><div class="s-ph"><span>syndrome_official님에게 댓글 추가...</span></div></div>
-    </div>
-  </div></div></div>
 <div class="v-ov v-st" id="ov-s-0" data-closable data-auto hidden><div class="story shot" style="background:linear-gradient(160deg,#833ab4,#fd1d1d 55%,#fcb045);--fs:0.85"><div class="st-grid" style="grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0cqw;">
     <div class="cell" data-cell="0"></div><div class="cell" data-cell="1"></div><div class="cell" data-cell="2"></div><div class="cell" data-cell="3"></div>
   </div><div class="s-ui">
