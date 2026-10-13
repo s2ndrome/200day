@@ -24,7 +24,7 @@ service cloud.firestore {
           && request.resource.data.text.size() > 0
           && request.resource.data.text.size() <= 2000
           && ((isAdmin() && request.resource.data.from == 'a')
-              || (isOwner(tid) && request.resource.data.from == 'v'));
+              || (isOwner(tid) && request.resource.data.from in ['v', 'ai']));
         allow update: if false;
         allow delete: if isAdmin();
       }

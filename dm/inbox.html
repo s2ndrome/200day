@@ -59,6 +59,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .bub { max-width: 66%; padding: 9px 13px; border-radius: 20px; white-space: pre-wrap; word-break: break-word; font-size: 15px; }
 .bub.a { align-self: flex-end; background: var(--blue); color: #fff; }
 .bub.v { align-self: flex-start; background: var(--btn); }
+.bub.ai { align-self: flex-end; background: #e4ecff; color: #1d2b6b; }
+.ai-tag { align-self: flex-end; font-size: 11px; color: var(--sec); margin: 0 6px 2px; }
 .bub time { display: none; }
 .seen { align-self: flex-end; font-size: 11px; color: var(--sec); margin: 2px 4px; }
 .typing { align-self: flex-start; display: none; gap: 3px; padding: 11px 13px; border-radius: 20px; background: var(--btn); margin-top: 4px; }
@@ -158,7 +160,7 @@ if (!firebaseConfig) {
         b.querySelector('.av').textContent = initial(t.name);
         b.querySelector('b').textContent = label(d.id, t);
         if (t.device) { const dv = document.createElement('small'); dv.textContent = t.device; b.querySelector('b').appendChild(dv); }
-        b.querySelector('.t span').textContent = (t.lastFrom === 'a' ? '나: ' : '') + (t.last || '') + ' · ' + ago(t.updatedAt);
+        b.querySelector('.t span').textContent = (t.lastFrom === 'a' ? '나: ' : t.lastFrom === 'ai' ? 'AI: ' : '') + (t.last || '') + ' · ' + ago(t.updatedAt);
         b.onclick = () => open(d.id);
         box.appendChild(b);
       });
@@ -193,6 +195,7 @@ if (!firebaseConfig) {
       snap.forEach((d) => {
         const m = d.data(), dt = m.at ? m.at.toDate() : new Date(), dd = dt.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' });
         if (dd !== day) { day = dd; const s = document.createElement('div'); s.className = 'day'; s.textContent = dd; msgs.appendChild(s); }
+        if (m.from === 'ai') { const tg = document.createElement('div'); tg.className = 'ai-tag'; tg.textContent = '🤖 AI 자동답장'; msgs.appendChild(tg); }
         const b = document.createElement('div'); b.className = 'bub ' + m.from; b.textContent = m.text;
         b.title = dt.toLocaleTimeString('ko-KR', { hour: 'numeric', minute: '2-digit' });
         msgs.appendChild(b);
