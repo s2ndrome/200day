@@ -3,7 +3,9 @@
 // 키는 코드에 쓰지 말고 Settings → Variables and Secrets 에 VERTEX_API_KEY (Secret) 로 넣으세요.
 // 모델을 바꾸고 싶으면 같은 곳에 GEMINI_MODEL (Text) 을 추가하세요. 없으면 아래 기본값을 써요.
 
-const DEFAULT_MODEL = 'gemini-2.5-flash';
+// gemini-2.5 계열은 2026년 10월 중순 종료 예정이라 3.x로 바꿨어요.
+// 더 똑똑하지만 느린 최상위 모델을 쓰려면 Cloudflare 변수 GEMINI_MODEL 에 gemini-3.1-pro-preview 를 넣으세요.
+const DEFAULT_MODEL = 'gemini-3.8-flash';
 
 // 이 사이트에서 온 요청만 받아요
 const ALLOWED_ORIGINS = [
@@ -131,10 +133,10 @@ export default {
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: system }] },
         contents,
-        // 2.5 Flash 모델은 생각(thinking)을 꺼야 짧은 답이 빨리 나와요
+        // 생각(thinking)을 줄여야 짧은 DM 답이 빨리 나와요
         safetySettings: ['HARM_CATEGORY_HARASSMENT', 'HARM_CATEGORY_HATE_SPEECH', 'HARM_CATEGORY_SEXUALLY_EXPLICIT', 'HARM_CATEGORY_DANGEROUS_CONTENT']
           .map((category) => ({ category, threshold: 'BLOCK_ONLY_HIGH' })),
-        generationConfig: { temperature: 0.9, maxOutputTokens: 1024, ...(model.startsWith('gemini-2.5-flash') ? { thinkingConfig: { thinkingBudget: 0 } } : {}) }
+        generationConfig: { temperature: 0.9, maxOutputTokens: 1024, ...(model.startsWith('gemini-2.5-flash') ? { thinkingConfig: { thinkingBudget: 0 } } : model.startsWith('gemini-3') ? { thinkingConfig: { thinkingLevel: 'low' } } : {}) }
       })
     });
     if (!res.ok) return json({ error: 'ai', status: res.status, detail: (await res.text()).slice(0, 300) }, 502, origin);
