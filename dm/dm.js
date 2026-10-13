@@ -8,6 +8,17 @@ const dm = $('dm'), body = $('dmBody'), list = $('dmList'), form = $('dmForm'), 
 
 let api = null, ready = null, tid = null, thread = null, lastSeenEl = null, typingTimer = null, lastTypingSent = 0;
 
+// 기기 정보 (받은 DM함에서만 보여요. IP·위치는 저장하지 않아요)
+function device() {
+  const ua = navigator.userAgent || '';
+  const os = /iPhone/.test(ua) ? 'iPhone' : /iPad/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? 'iPad'
+    : /Android/.test(ua) ? 'Android' : /Windows/.test(ua) ? 'Windows' : /Mac OS X|Macintosh/.test(ua) ? 'Mac' : /CrOS/.test(ua) ? 'ChromeOS' : /Linux/.test(ua) ? 'Linux' : '기타';
+  const br = /KAKAOTALK/i.test(ua) ? '카카오톡' : /Instagram/.test(ua) ? '인스타그램 앱' : /NAVER/.test(ua) ? '네이버 앱' : /Whale/.test(ua) ? '웨일'
+    : /SamsungBrowser/.test(ua) ? '삼성 인터넷' : /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Firefox|FxiOS/.test(ua) ? 'Firefox'
+    : /CriOS|Chrome\//.test(ua) ? 'Chrome' : /Safari/.test(ua) ? 'Safari' : '기타';
+  return os + ' · ' + br;
+}
+
 function show(on) {
   dm.hidden = !on;
   document.body.classList.toggle('v-lock', on);
@@ -106,7 +117,7 @@ form.addEventListener('submit', async (e) => {
   try {
     await fs.setDoc(ref, {
       name, last: text.slice(0, 120), lastFrom: 'v', updatedAt: fs.serverTimestamp(),
-      unreadAdmin: fs.increment(1), visitorTyping: null,
+      unreadAdmin: fs.increment(1), visitorTyping: null, device: device(),
       ...(thread ? {} : { createdAt: fs.serverTimestamp() })
     }, { merge: true });
     await fs.addDoc(msgs, { from: 'v', text, at: fs.serverTimestamp() });

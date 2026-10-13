@@ -38,6 +38,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .thr.on { background: #efefef; }
 .thr .t { flex: 1; min-width: 0; }
 .thr .t b { display: block; font-weight: 400; }
+.thr .t b small { margin-left: 6px; color: var(--sec); font-size: 11px; font-weight: 400; }
 .thr .t span { display: block; color: var(--sec); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .thr.unread .t b, .thr.unread .t span { font-weight: 700; color: var(--ink); }
 .thr .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); visibility: hidden; flex: none; }
@@ -156,6 +157,7 @@ if (!firebaseConfig) {
         b.innerHTML = '<span class="av"></span><span class="t"><b></b><span></span></span><i class="dot"></i>';
         b.querySelector('.av').textContent = initial(t.name);
         b.querySelector('b').textContent = label(d.id, t);
+        if (t.device) { const dv = document.createElement('small'); dv.textContent = t.device; b.querySelector('b').appendChild(dv); }
         b.querySelector('.t span').textContent = (t.lastFrom === 'a' ? '나: ' : '') + (t.last || '') + ' · ' + ago(t.updatedAt);
         b.onclick = () => open(d.id);
         box.appendChild(b);
@@ -180,7 +182,7 @@ if (!firebaseConfig) {
     offThread = fs.onSnapshot(ref, (d) => {
       thread = d.data() || {};
       $('chatAv').textContent = initial(thread.name); $('chatName').textContent = label(id, thread);
-      $('chatSub').textContent = '3번 인스타 DM · ' + (thread.createdAt ? thread.createdAt.toDate().toLocaleDateString('ko-KR') + ' 시작' : '');
+      $('chatSub').textContent = (thread.device ? thread.device + ' · ' : '') + '3번 인스타 DM · ' + (thread.createdAt ? thread.createdAt.toDate().toLocaleDateString('ko-KR') + ' 시작' : '');
       clearTimeout(typingT);
       const t = thread.visitorTyping ? thread.visitorTyping.toMillis() : 0, on = Date.now() - t < 5000;
       typing.classList.toggle('show', on); if (on) { msgs.scrollTop = msgs.scrollHeight; typingT = setTimeout(() => typing.classList.remove('show'), 5000 - (Date.now() - t)); }
