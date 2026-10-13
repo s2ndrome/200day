@@ -43,6 +43,11 @@ a { color: inherit; text-decoration: none; }
 
 /* 큰 글자 */
 .hero { position: relative; z-index: 2; padding: 13vh 24px 9vh; }
+/* 휴대폰: 위쪽 여백 줄이기 */
+@media (max-width: 760px) {
+  .head { padding-top: calc(10px + env(safe-area-inset-top, 0px)); }
+  .hero { padding: 36px 24px 40px; }
+}
 .title { margin: 0; font: 400 clamp(64px, 11vw, 150px)/.9 var(--sans); letter-spacing: -.055em; display: flex; align-items: flex-start; gap: 10px; }
 .title em { font: italic 400 1.04em/.9 var(--serif); letter-spacing: -.02em; }
 .title sup, .line sup { font: 400 11px/1 var(--mono); letter-spacing: 0; margin-top: .9em; color: var(--mid); }
