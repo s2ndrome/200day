@@ -132,6 +132,8 @@ export default {
         systemInstruction: { parts: [{ text: system }] },
         contents,
         // 2.5 Flash 모델은 생각(thinking)을 꺼야 짧은 답이 빨리 나와요
+        safetySettings: ['HARM_CATEGORY_HARASSMENT', 'HARM_CATEGORY_HATE_SPEECH', 'HARM_CATEGORY_SEXUALLY_EXPLICIT', 'HARM_CATEGORY_DANGEROUS_CONTENT']
+          .map((category) => ({ category, threshold: 'BLOCK_ONLY_HIGH' })),
         generationConfig: { temperature: 0.9, maxOutputTokens: 1024, ...(model.startsWith('gemini-2.5-flash') ? { thinkingConfig: { thinkingBudget: 0 } } : {}) }
       })
     });
@@ -139,7 +141,8 @@ export default {
     const data = await res.json();
     const parts = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) || [];
     const reply = parts.filter((p) => p.text && !p.thought).map((p) => p.text).join('').trim().slice(0, 600);
-    if (!reply) return json({ error: 'empty' }, 502, origin);
+    // 캐릭터 설정의 '폭주·파괴' 같은 단어 때문에 가끔 답이 비어 오면, 신드롬답게 짧게 넘겨요
+    if (!reply) return json({ reply: '…그건 패스.', fallback: (data.candidates && data.candidates[0] && data.candidates[0].finishReason) || 'empty' }, 200, origin);
     return json({ reply }, 200, origin);
   }
 };

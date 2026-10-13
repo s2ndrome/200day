@@ -12,6 +12,12 @@ service cloud.firestore {
       return request.auth != null && request.auth.uid == tid;
     }
 
+    // 답장 모드 설정 (받은 DM함에서 바꿔요)
+    match /config/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
     // 방문자 한 명 = 대화방 하나 (방 ID = 방문자의 익명 로그인 ID)
     match /threads/{tid} {
       allow read: if isAdmin() || isOwner(tid);

@@ -6,13 +6,14 @@ const V = '10.12.2';
 const NTFY_TOPIC = 'whats-s-dm-1cdlzfdl6913ix';
 // 15초 동안 내가 답을 안 하면 신드롬 말투 AI가 대신 답장해요 (dm/worker.js 를 Cloudflare에 올린 주소)
 const AI_URL = 'https://syndrome-chat.jenojeno0423.workers.dev';
-const AI_DELAY = 15000;
+const AI_DELAY = 15000;      // '15초 후 AI' 모드
+const AI_INSTANT = 2500;     // '바로 AI' 모드 (사람처럼 보이게 살짝만 기다려요)
 const $ = (id) => document.getElementById(id);
 const dm = $('dm'), body = $('dmBody'), list = $('dmList'), form = $('dmForm'), ta = $('dmText'), btn = $('dmSend'),
   nm = $('dmName'), typing = $('dmTyping'), state = $('dmState'), online = $('dmOnline');
 
 let api = null, ready = null, tid = null, thread = null, lastSeenEl = null, typingTimer = null, lastTypingSent = 0;
-let history = [], aiTimer = null, aiBusy = false;
+let history = [], aiTimer = null, aiBusy = false, aiMode = 'delay', aiTries = 0;
 
 // 기기 정보 (받은 DM함에서만 보여요. IP·위치는 저장하지 않아요)
 function device() {
@@ -85,6 +86,8 @@ function listen() {
     paintSeen(); body.scrollTop = body.scrollHeight;
   });
   fs.onSnapshot(ref, (d) => { thread = d.exists() ? d.data() : null; paintSeen(); paintTyping(); });
+  // 받은 DM함에서 고른 답장 모드 (instant / delay / off)
+  fs.onSnapshot(fs.doc(api.db, 'config', 'dm'), (d) => { aiMode = (d.exists() && d.data().aiMode) || 'delay'; scheduleAi(); }, () => {});
   try { nm.value = localStorage.getItem('whats-s-dm-name') || ''; } catch (e) {}
 }
 
@@ -160,14 +163,15 @@ function notify() {
 // ── AI 자동답장 ──
 // 마지막 메시지가 방문자 것이면 15초 뒤에 확인하고, 그 사이 내가 답하거나 입력 중이면 하지 않아요
 function scheduleAi() {
-  clearTimeout(aiTimer);
+  clearTimeout(aiTimer); aiTries = 0;
   const last = history[history.length - 1];
-  if (!AI_URL || !last || last.from !== 'v') return;
-  aiTimer = setTimeout(autoReply, Math.max(1000, AI_DELAY - (Date.now() - last.at)));
+  if (!AI_URL || aiMode === 'off' || !last || last.from !== 'v') return;
+  const wait = aiMode === 'instant' ? AI_INSTANT : AI_DELAY;
+  aiTimer = setTimeout(autoReply, Math.max(1000, wait - (Date.now() - last.at)));
 }
 async function autoReply() {
   const last = history[history.length - 1];
-  if (aiBusy || !api || !last || last.from !== 'v') return;
+  if (aiBusy || !api || aiMode === 'off' || !last || last.from !== 'v') return;
   const adminTyping = thread && thread.adminTyping ? Date.now() - thread.adminTyping.toMillis() < 8000 : false;
   if (adminTyping) { aiTimer = setTimeout(autoReply, 15000); return; }
   aiBusy = true; paintTyping();
@@ -176,14 +180,24 @@ async function autoReply() {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: history.slice(-20).map((m) => ({ from: m.from, text: m.text })), name: nm.value.trim() })
     });
-    const data = r.ok ? await r.json() : null;
+    const data = await r.json().catch(() => null);
     const now = history[history.length - 1];
-    if (!data || !data.reply || !now || now.from !== 'v') return;
+    if (!now || now.from !== 'v' || aiMode === 'off') return;
     const { fs, ref, msgs } = api;
+    if (!r.ok || !data || !data.reply) {
+      // 실패하면 받은 DM함에서 원인이 보이게 남기고, 한 번만 다시 시도해요
+      const why = (r.status + ' ' + (data ? (data.error || '') + ' ' + (data.detail || '') : '')).trim().slice(0, 200);
+      fs.setDoc(ref, { aiError: why, aiErrorAt: fs.serverTimestamp() }, { merge: true }).catch(() => {});
+      if (aiTries++ < 1) aiTimer = setTimeout(autoReply, 5000);
+      return;
+    }
+    aiTries = 0;
     await fs.addDoc(msgs, { from: 'ai', text: data.reply, at: fs.serverTimestamp() });
-    await fs.setDoc(ref, { last: data.reply.slice(0, 120), lastFrom: 'ai', updatedAt: fs.serverTimestamp() }, { merge: true });
+    await fs.setDoc(ref, { last: data.reply.slice(0, 120), lastFrom: 'ai', updatedAt: fs.serverTimestamp(), aiError: null }, { merge: true });
   } catch (err) {
     console.error(err);
+    if (api) api.fs.setDoc(api.ref, { aiError: '연결 실패 ' + String(err && err.message || err).slice(0, 150), aiErrorAt: api.fs.serverTimestamp() }, { merge: true }).catch(() => {});
+    if (aiTries++ < 1) aiTimer = setTimeout(autoReply, 5000);
   } finally {
     aiBusy = false; paintTyping();
   }

@@ -30,6 +30,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .side-h { padding: 18px 20px 10px; display: flex; align-items: center; gap: 8px; }
 .side-h b { flex: 1; font-size: 20px; letter-spacing: -.02em; }
 .side-h button { font-size: 12px; color: var(--sec); }
+.mode { display: flex; gap: 4px; margin: 0 20px 12px; padding: 3px; border-radius: 10px; background: var(--btn); }
+.mode button { flex: 1; padding: 7px 0; border-radius: 8px; font-size: 12px; font-weight: 600; color: var(--sec); }
+.mode button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.mode-note { margin: -6px 20px 10px; font-size: 11px; color: var(--sec); }
+.ai-err { display: block; color: var(--red); font-size: 11px; margin-top: 2px; }
 .side-tabs { display: flex; gap: 16px; padding: 4px 20px 10px; font-weight: 600; }
 .side-tabs span { color: var(--sec); font-weight: 400; }
 .threads { flex: 1; overflow-y: auto; }
@@ -90,6 +95,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 <div class="app" id="app" hidden>
   <aside class="side">
     <div class="side-h"><b>syndrome_official</b><button id="notifyBtn" hidden>알림 켜기</button><button id="logout">로그아웃</button></div>
+    <div class="mode" id="mode"><button data-m="instant">바로 AI</button><button data-m="delay">15초 후 AI</button><button data-m="off">수동</button></div>
+    <div class="mode-note" id="modeNote"></div>
     <div class="side-tabs">메시지 <span id="count"></span></div>
     <div class="threads" id="threads"><div class="empty">아직 받은 DM이 없어요.</div></div>
   </aside>
@@ -145,6 +152,15 @@ if (!firebaseConfig) {
     if (offThreads) { offThreads(); offThreads = null; }
     if (!u || u.isAnonymous) { $('app').hidden = true; $('gate').hidden = false; $('login').hidden = false; gateMsg.className = ''; gateMsg.textContent = 'syndrome_official 관리자만 볼 수 있어요.'; return; }
     $('gate').hidden = true; $('app').hidden = false;
+    // 답장 모드: 고르면 모든 방문자 DM에 바로 적용돼요
+    const NOTES = { instant: '방문자가 보내면 AI가 바로 답장해요.', delay: '15초 동안 내가 답이 없으면 AI가 답장해요.', off: 'AI는 꺼져 있어요. 내가 직접 답장해요.' };
+    const cfg = fs.doc(db, 'config', 'dm');
+    fs.onSnapshot(cfg, (d) => {
+      const m = (d.exists() && d.data().aiMode) || 'delay';
+      document.querySelectorAll('#mode button').forEach((b) => b.classList.toggle('on', b.dataset.m === m));
+      $('modeNote').textContent = NOTES[m];
+    }, () => { $('modeNote').textContent = '모드를 바꾸려면 Firestore 규칙에 config 부분을 추가해야 해요.'; });
+    document.querySelectorAll('#mode button').forEach((b) => { b.onclick = () => fs.setDoc(cfg, { aiMode: b.dataset.m }, { merge: true }).catch((e) => alert('모드 저장 실패: ' + (e.code || e))); });
     offThreads = fs.onSnapshot(fs.query(fs.collection(db, 'threads'), fs.orderBy('updatedAt', 'desc')), (snap) => {
       const box = $('threads'); box.textContent = ''; let unread = 0;
       if (snap.empty) box.innerHTML = '<div class="empty">아직 받은 DM이 없어요.</div>';
@@ -184,6 +200,7 @@ if (!firebaseConfig) {
       thread = d.data() || {};
       $('chatAv').textContent = initial(thread.name); $('chatName').textContent = label(id, thread);
       $('chatSub').textContent = (thread.device ? thread.device + ' · ' : '') + '3번 인스타 DM · ' + (thread.createdAt ? thread.createdAt.toDate().toLocaleDateString('ko-KR') + ' 시작' : '');
+      if (thread.aiError) { const er = document.createElement('span'); er.className = 'ai-err'; er.textContent = 'AI 답장 실패: ' + thread.aiError; $('chatSub').appendChild(er); }
       clearTimeout(typingT);
       const t = thread.visitorTyping ? thread.visitorTyping.toMillis() : 0, on = Date.now() - t < 5000;
       typing.classList.toggle('show', on); if (on) { msgs.scrollTop = msgs.scrollHeight; typingT = setTimeout(() => typing.classList.remove('show'), 5000 - (Date.now() - t)); }
