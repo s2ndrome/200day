@@ -4,9 +4,9 @@ import { firebaseConfig } from './firebase-config.js?v=10131351';
 const V = '10.12.2';
 // 새 DM 알림: 휴대폰 ntfy 앱에서 이 채널을 구독하면 돼요. 채널 이름이 공개되니 메시지 내용은 보내지 않아요.
 const NTFY_TOPIC = 'whats-s-dm-1cdlzfdl6913ix';
-// 30초 동안 내가 답을 안 하면 신드롬 말투 AI가 대신 답장해요 (dm/worker.js 를 Cloudflare에 올린 주소)
+// 15초 동안 내가 답을 안 하면 신드롬 말투 AI가 대신 답장해요 (dm/worker.js 를 Cloudflare에 올린 주소)
 const AI_URL = 'https://syndrome-chat.jenojeno0423.workers.dev';
-const AI_DELAY = 30000;
+const AI_DELAY = 15000;
 const $ = (id) => document.getElementById(id);
 const dm = $('dm'), body = $('dmBody'), list = $('dmList'), form = $('dmForm'), ta = $('dmText'), btn = $('dmSend'),
   nm = $('dmName'), typing = $('dmTyping'), state = $('dmState'), online = $('dmOnline');
@@ -158,7 +158,7 @@ function notify() {
 }
 
 // ── AI 자동답장 ──
-// 마지막 메시지가 방문자 것이면 30초 뒤에 확인하고, 그 사이 내가 답하거나 입력 중이면 하지 않아요
+// 마지막 메시지가 방문자 것이면 15초 뒤에 확인하고, 그 사이 내가 답하거나 입력 중이면 하지 않아요
 function scheduleAi() {
   clearTimeout(aiTimer);
   const last = history[history.length - 1];
