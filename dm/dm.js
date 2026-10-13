@@ -116,7 +116,9 @@ form.addEventListener('submit', async (e) => {
   ta.value = ''; ta.style.height = 'auto'; btn.disabled = true;
   const { fs, ref, msgs } = api;
   const name = nm.value.trim().slice(0, 30);
-  const firstUnread = !thread || !thread.unreadAdmin;
+  // 내가 아직 안 읽었으면 첫 메시지만, 단 마지막 알림 뒤 10분이 지났으면 다시 알림
+  let lastPing = 0; try { lastPing = Number(localStorage.getItem('whats-s-dm-ping')) || 0; } catch (e) {}
+  const firstUnread = !thread || !thread.unreadAdmin || Date.now() - lastPing > 600000;
   try {
     await fs.setDoc(ref, {
       name, last: text.slice(0, 120), lastFrom: 'v', updatedAt: fs.serverTimestamp(),
@@ -134,6 +136,7 @@ form.addEventListener('submit', async (e) => {
 // 내가 읽기 전까지는 대화방마다 첫 메시지 한 번만 알림
 function notify() {
   if (!NTFY_TOPIC) return;
+  try { localStorage.setItem('whats-s-dm-ping', String(Date.now())); } catch (e) {}
   const who = '방문자 #' + tid.slice(0, 4).toUpperCase();
   fetch('https://ntfy.sh/', {
     method: 'POST',
