@@ -2,6 +2,8 @@
 import { firebaseConfig } from './firebase-config.js?v=10131351';
 
 const V = '10.12.2';
+// 새 DM 알림: 휴대폰 ntfy 앱에서 이 채널을 구독하면 돼요. 채널 이름이 공개되니 메시지 내용은 보내지 않아요.
+const NTFY_TOPIC = 'whats-s-dm-1cdlzfdl6913ix';
 const $ = (id) => document.getElementById(id);
 const dm = $('dm'), body = $('dmBody'), list = $('dmList'), form = $('dmForm'), ta = $('dmText'), btn = $('dmSend'),
   nm = $('dmName'), typing = $('dmTyping'), state = $('dmState'), online = $('dmOnline');
@@ -114,6 +116,7 @@ form.addEventListener('submit', async (e) => {
   ta.value = ''; ta.style.height = 'auto'; btn.disabled = true;
   const { fs, ref, msgs } = api;
   const name = nm.value.trim().slice(0, 30);
+  const firstUnread = !thread || !thread.unreadAdmin;
   try {
     await fs.setDoc(ref, {
       name, last: text.slice(0, 120), lastFrom: 'v', updatedAt: fs.serverTimestamp(),
@@ -121,8 +124,26 @@ form.addEventListener('submit', async (e) => {
       ...(thread ? {} : { createdAt: fs.serverTimestamp() })
     }, { merge: true });
     await fs.addDoc(msgs, { from: 'v', text, at: fs.serverTimestamp() });
+    if (firstUnread) notify();
   } catch (err) {
     console.error(err); ta.value = text; btn.disabled = false; note('전송에 실패했어요. 다시 시도해주세요.');
     setTimeout(() => note(''), 3000);
   }
 });
+
+// 내가 읽기 전까지는 대화방마다 첫 메시지 한 번만 알림
+function notify() {
+  if (!NTFY_TOPIC) return;
+  const who = '방문자 #' + tid.slice(0, 4).toUpperCase();
+  fetch('https://ntfy.sh/', {
+    method: 'POST',
+    body: JSON.stringify({
+      topic: NTFY_TOPIC,
+      title: '💌 새 DM이 왔어요',
+      message: who + ' · ' + device(),
+      tags: ['syndrome_official'],
+      click: new URL('../dm/inbox.html', location.href).href,
+      priority: 4
+    })
+  }).catch(() => {});
+}
