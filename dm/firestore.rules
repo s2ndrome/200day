@@ -1,0 +1,33 @@
+rules_version = '2';
+// Firebase 콘솔 → Firestore Database → 규칙 탭에 그대로 붙여 넣으세요.
+// ADMIN_EMAIL 자리에 '받은 DM함'에 로그인할 본인 구글 이메일을 적어주세요.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == "ADMIN_EMAIL"
+        && request.auth.token.email_verified == true;
+    }
+    function isOwner(tid) {
+      return request.auth != null && request.auth.uid == tid;
+    }
+
+    // 방문자 한 명 = 대화방 하나 (방 ID = 방문자의 익명 로그인 ID)
+    match /threads/{tid} {
+      allow read: if isAdmin() || isOwner(tid);
+      allow create, update: if isAdmin() || isOwner(tid);
+      allow delete: if isAdmin();
+
+      match /messages/{mid} {
+        allow read: if isAdmin() || isOwner(tid);
+        allow create: if request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() <= 2000
+          && ((isAdmin() && request.resource.data.from == 'a')
+              || (isOwner(tid) && request.resource.data.from == 'v'));
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
+    }
+  }
+}

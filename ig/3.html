@@ -253,7 +253,45 @@ body.v-lock { overflow: hidden; }
 .vid-mute { position: absolute; right: 12px; bottom: 12px; width: 28px; height: 28px; border-radius: 50%; background: rgba(18,18,18,.7); display: flex; align-items: center; justify-content: center; }
 /* 컴퓨터에서만 글씨 작게 */
 @media (min-width: 1024px) and (pointer: fine) { .ig { --fs: .76 !important; } }
+
+/* DM: 방문자 ↔ 관리자 실시간 1:1 (dm/dm.js) */
+.dm { position: fixed; inset: 0; z-index: 30; display: flex; justify-content: center; background: var(--ig-bg, #fff); }
+.dm[hidden] { display: none; }
+.dm > .ig { width: 100%; max-width: 470px; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+.dm-top { display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 12px; border-bottom: 1px solid var(--ig-line); flex: none; }
+.dm-top button { display: flex; border: 0; background: none; padding: 0; color: inherit; cursor: pointer; }
+.dm-top .av { width: 32px; height: 32px; }
+.dm-who { flex: 1; min-width: 0; line-height: 1.2; }
+.dm-who b { display: flex; align-items: center; font-size: calc(15px * var(--fs, 1)); }
+.dm-who small { font-size: calc(12px * var(--fs, 1)); color: var(--ig-sec); }
+.dm-who small.on { color: #2bb24c; }
+.dm-body { flex: 1; overflow-y: auto; padding: 16px 12px 8px; display: flex; flex-direction: column; }
+.dm-intro { text-align: center; padding: 18px 0 26px; }
+.dm-intro .av { width: 92px; height: 92px; margin: 0 auto 12px; }
+.dm-intro b { display: inline-flex; align-items: center; font-size: calc(18px * var(--fs, 1)); }
+.dm-intro p { margin: 4px 0 0; font-size: calc(13px * var(--fs, 1)); color: var(--ig-sec); }
+.dm-intro .dm-btn { display: inline-block; margin-top: 14px; padding: 7px 14px; border-radius: 8px; background: var(--ig-btn); font-size: calc(13px * var(--fs, 1)); font-weight: 600; cursor: pointer; }
+.dm-name { display: block; width: 220px; max-width: 100%; margin: 16px auto 0; padding: 9px 14px; border: 1px solid var(--ig-line); border-radius: 18px; font: inherit; font-size: calc(13px * var(--fs, 1)); text-align: center; background: none; color: inherit; outline: none; }
+.dm-state { text-align: center; font-size: calc(12px * var(--fs, 1)); color: var(--ig-sec); padding: 6px 0; }
+.dm-state[hidden] { display: none; }
+.dm-list { display: flex; flex-direction: column; gap: 4px; margin-top: auto; }
+.bub { max-width: 72%; padding: 9px 13px; border-radius: 20px; font-size: calc(15px * var(--fs, 1)); line-height: 1.35; white-space: pre-wrap; word-break: break-word; }
+.bub.me { align-self: flex-end; background: #3797f0; color: #fff; }
+.bub-row { display: flex; align-items: flex-end; gap: 6px; align-self: flex-start; max-width: 80%; }
+.bub-row .av { width: 26px; height: 26px; }
+.bub-row .bub { max-width: none; background: var(--ig-btn); }
+.bub-st { align-self: flex-end; font-size: calc(11px * var(--fs, 1)); color: var(--ig-sec); margin: 2px 4px 6px; }
+.dm-typing { align-self: flex-start; display: none; gap: 3px; margin: 4px 0 0 32px; padding: 11px 13px; border-radius: 20px; background: var(--ig-btn); }
+.dm-typing.show { display: flex; }
+.dm-typing i { width: 6px; height: 6px; border-radius: 50%; background: #999; animation: dmb 1s infinite; }
+.dm-typing i:nth-child(2) { animation-delay: .15s; } .dm-typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes dmb { 0%, 60%, 100% { opacity: .3; } 30% { opacity: 1; } }
+.dm-bar { flex: none; display: flex; align-items: center; gap: 10px; margin: 8px 12px calc(12px + env(safe-area-inset-bottom, 0px)); padding: 6px 6px 6px 16px; border-radius: 24px; background: var(--ig-btn); }
+.dm-bar textarea { flex: 1; min-width: 0; border: 0; background: none; font: inherit; font-size: 16px; color: inherit; resize: none; outline: none; max-height: 96px; padding: 6px 0; line-height: 1.35; }
+.dm-bar button { border: 0; background: none; color: #3797f0; font: inherit; font-size: calc(15px * var(--fs, 1)); font-weight: 600; padding: 6px 10px; cursor: pointer; }
+.dm-bar button:disabled { opacity: .35; cursor: default; }
 </style>
+<script src="../guard.js"></script>
 </head>
 <body class="v-light">
 <section class="v-scr" id="s-home">
@@ -282,7 +320,7 @@ body.v-lock { overflow: hidden; }
       
       
     </div>
-    <div class="a-btns"><div class="blue">팔로우</div><div>메시지</div><div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" ><path d="M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2.5 21c.8-4 3.8-6 7.5-6s6.7 2 7.5 6M19.5 8v6M16.5 11h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+    <div class="a-btns"><div class="blue">팔로우</div><div data-dm>메시지</div><div class="ico"><svg width="16" height="16" viewBox="0 0 24 24" ><path d="M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2.5 21c.8-4 3.8-6 7.5-6s6.7 2 7.5 6M19.5 8v6M16.5 11h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
     
     <div class="a-tabs"><div class="on"><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M2.5 7.5h19M8.5 2.5l3 5M14.5 2.5l3 5M6.5 2.5h11a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4h-11a4 4 0 0 1-4-4v-11a4 4 0 0 1 4-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11.3v6.2l5-3.1z" fill="currentColor"/></svg></div><div><svg width="24" height="24" viewBox="0 0 24 24" ><path d="M10.2 18.3 12 21l1.8-2.7H19a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11.3a2 2 0 0 0 2 2zM12 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM7.5 15c.7-1.9 2.4-3 4.5-3s3.8 1.1 4.5 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
     <div class="a-grid"><div data-go="s-post-0"><img src="https://i.imgur.com/t6VdSEv.jpg" alt="" style="object-position:17.67% 100.00%;transform-origin:17.67% 100.00%;transform:scale(1.374)"></div><div data-go="s-post-1"><img src="https://i.imgur.com/VLEPja6.jpg" alt="" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)"></div><div data-go="s-post-2"><img src="https://i.imgur.com/4X8POqB.jpg" alt="" style="object-position:45.16% 0.00%;transform-origin:45.16% 0.00%;transform:scale(1.174)"><span class="g-multi"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 3h11a2 2 0 0 1 2 2v11" fill="none" stroke="#fff" stroke-width="2"/><rect x="3" y="7" width="14" height="14" rx="2" fill="#fff"/></svg></span></div><div data-go="s-post-3"><img src="https://i.imgur.com/DW2Ut5m.jpg" alt="" style="object-position:50.00% 50.00%;transform-origin:50.00% 50.00%;transform:scale(1.000)"></div><div data-go="s-post-4"><img src="https://i.imgur.com/Xb6klP0.jpg" alt="" style="object-position:42.99% 100.00%;transform-origin:42.99% 100.00%;transform:scale(1.578)"></div><div data-go="s-post-5"><img src="https://i.imgur.com/OFFSvPc.jpg" alt="" style="object-position:11.94% 99.61%;transform-origin:11.94% 99.61%;transform:scale(2.069)"><span class="g-multi"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M2.5 7.5h19M8.5 2.5l3 5M14.5 2.5l3 5M6.5 2.5h11a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4h-11a4 4 0 0 1-4-4v-11a4 4 0 0 1 4-4z" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11.3v6.2l5-3.1z" fill="#fff"/></svg></span></div><div data-go="s-post-6"><img src="https://i.imgur.com/uUwh9CU.jpg" alt="" style="object-position:66.30% 100.00%;transform-origin:66.30% 100.00%;transform:scale(1.646)"></div><div data-go="s-post-7"><img src="https://i.imgur.com/xn5zkOo.jpg" alt="" style="object-position:50.00% 56.55%;transform-origin:50.00% 56.55%;transform:scale(1.000)"></div><div data-go="s-post-8"><img src="https://i.imgur.com/2GppK31.jpg" alt="" style="object-position:50.00% 17.14%;transform-origin:50.00% 17.14%;transform:scale(1.000)"></div></div>
@@ -1329,5 +1367,17 @@ body.v-lock { overflow: hidden; }
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
 })();
 </script>
+<div class="dm" id="dm" data-av="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" hidden><div style="--fs:0.85" class="ig" data-theme="light">
+  <div class="dm-top"><button type="button" data-dm-close aria-label="뒤로"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M15 4.5 7.5 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><div class="dm-who"><b>syndrome_official<svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></b><small id="dmOnline">SYNDROME</small></div></div>
+  <div class="dm-body" id="dmBody">
+    <div class="dm-intro"><img class="av" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FxddkD%2FdJMb99NteLx%2FAAAAAAAAAAAAAAAAAAAAAOLPncoLdcY5QImqfTSv-DblUFZp5_ZUgSTAYRdVArdU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DsEjB2Z%252Ffvc3sBO1UGdNLDDn7usU%253D" alt=""><b>SYNDROME<svg class="vf" width="14" height="14" viewBox="0 0 24 24"><path d="M12.00 2.40Q16.08 -0.55 17.64 4.23Q22.68 4.24 21.13 9.03Q25.20 12.00 21.13 14.97Q22.68 19.76 17.64 19.77Q16.08 24.55 12.00 21.60Q7.92 24.55 6.36 19.77Q1.32 19.76 2.87 14.97Q-1.20 12.00 2.87 9.03Q1.32 4.24 6.36 4.23Q7.92 -0.55 12.00 2.40Z" fill="#0095f6"/><path d="M7.6 12.3l3 3 5.8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></b><p>syndrome_official · Instagram</p><p>팔로워 921만명 · 게시물 15개</p><span class="dm-btn" data-dm-close>프로필 보기</span>
+      <input class="dm-name" id="dmName" maxlength="30" placeholder="내 이름 (선택)" autocomplete="nickname"></div>
+    <div class="dm-state" id="dmState" hidden></div>
+    <div class="dm-list" id="dmList"></div>
+    <div class="dm-typing" id="dmTyping"><i></i><i></i><i></i></div>
+  </div>
+  <form class="dm-bar" id="dmForm"><textarea id="dmText" rows="1" maxlength="2000" placeholder="메시지 보내기..." aria-label="메시지"></textarea><button type="submit" id="dmSend" disabled>보내기</button></form>
+</div></div>
+<script type="module" src="../dm/dm.js"></script>
 </body>
 </html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>받은 DM함 · syndrome_official</title>
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<style>
+:root { --bg: #fff; --ink: #000; --sec: #737373; --line: #dbdbdb; --btn: #efefef; --blue: #3797f0; --red: #ff3040; color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--bg); color: var(--ink); font: 14px/1.35 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+[hidden] { display: none !important; }
+.av { width: 48px; height: 48px; border-radius: 50%; flex: none; display: grid; place-items: center; background: #c7c7cc; color: #fff; font-weight: 600; overflow: hidden; }
+.av img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 로그인 */
+.gate { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center; }
+.gate b { font-size: 22px; letter-spacing: -.02em; }
+.gate p { margin: 0; color: var(--sec); font-size: 13px; max-width: 300px; }
+.gate .go { margin-top: 8px; padding: 10px 18px; border-radius: 8px; background: #0095f6; color: #fff; font-weight: 600; }
+.gate .err { color: var(--red); }
+
+/* 레이아웃 */
+.app { height: 100%; display: grid; grid-template-columns: 360px 1fr; }
+.side { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+.side-h { padding: 18px 20px 10px; display: flex; align-items: center; gap: 8px; }
+.side-h b { flex: 1; font-size: 20px; letter-spacing: -.02em; }
+.side-h button { font-size: 12px; color: var(--sec); }
+.side-tabs { display: flex; gap: 16px; padding: 4px 20px 10px; font-weight: 600; }
+.side-tabs span { color: var(--sec); font-weight: 400; }
+.threads { flex: 1; overflow-y: auto; }
+.thr { width: 100%; display: flex; align-items: center; gap: 12px; padding: 8px 20px; text-align: left; }
+.thr:hover { background: #fafafa; }
+.thr.on { background: #efefef; }
+.thr .t { flex: 1; min-width: 0; }
+.thr .t b { display: block; font-weight: 400; }
+.thr .t span { display: block; color: var(--sec); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.thr.unread .t b, .thr.unread .t span { font-weight: 700; color: var(--ink); }
+.thr .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); visibility: hidden; flex: none; }
+.thr.unread .dot { visibility: visible; }
+.empty { padding: 40px 20px; text-align: center; color: var(--sec); font-size: 13px; }
+
+.main { display: flex; flex-direction: column; min-height: 0; }
+.main-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: var(--sec); }
+.main-empty b { color: var(--ink); font-size: 20px; font-weight: 400; }
+.chat-h { display: flex; align-items: center; gap: 12px; height: 64px; padding: 0 16px; border-bottom: 1px solid var(--line); flex: none; }
+.chat-h .av { width: 40px; height: 40px; }
+.chat-h .who { flex: 1; min-width: 0; }
+.chat-h .who b { display: block; font-size: 15px; }
+.chat-h .who small { color: var(--sec); font-size: 12px; }
+.chat-h .back { display: none; font-size: 26px; line-height: 1; padding-right: 4px; }
+.msgs { flex: 1; overflow-y: auto; padding: 18px 16px 8px; display: flex; flex-direction: column; gap: 4px; }
+.day { align-self: center; color: var(--sec); font-size: 12px; margin: 10px 0 6px; }
+.bub { max-width: 66%; padding: 9px 13px; border-radius: 20px; white-space: pre-wrap; word-break: break-word; font-size: 15px; }
+.bub.a { align-self: flex-end; background: var(--blue); color: #fff; }
+.bub.v { align-self: flex-start; background: var(--btn); }
+.bub time { display: none; }
+.seen { align-self: flex-end; font-size: 11px; color: var(--sec); margin: 2px 4px; }
+.typing { align-self: flex-start; display: none; gap: 3px; padding: 11px 13px; border-radius: 20px; background: var(--btn); margin-top: 4px; }
+.typing.show { display: flex; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: #999; animation: b 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes b { 0%, 60%, 100% { opacity: .3; } 30% { opacity: 1; } }
+.bar { flex: none; display: flex; align-items: center; gap: 10px; margin: 8px 16px calc(14px + env(safe-area-inset-bottom, 0px)); padding: 6px 6px 6px 18px; border: 1px solid var(--line); border-radius: 24px; }
+.bar textarea { flex: 1; min-width: 0; border: 0; font: inherit; font-size: 16px; resize: none; outline: none; max-height: 120px; padding: 7px 0; background: none; }
+.bar button { color: var(--blue); font-weight: 600; padding: 6px 10px; }
+.bar button:disabled { opacity: .35; cursor: default; }
+
+@media (max-width: 760px) {
+  .app { grid-template-columns: 1fr; }
+  .app.open .side { display: none; }
+  .app:not(.open) .main { display: none; }
+  .chat-h .back { display: block; }
+}
+</style>
+</head>
+<body>
+<div class="gate" id="gate">
+  <b>받은 DM함</b>
+  <p id="gateMsg">syndrome_official 관리자만 볼 수 있어요.</p>
+  <button class="go" id="login" hidden>Google로 로그인</button>
+</div>
+
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <div class="side-h"><b>syndrome_official</b><button id="notifyBtn" hidden>알림 켜기</button><button id="logout">로그아웃</button></div>
+    <div class="side-tabs">메시지 <span id="count"></span></div>
+    <div class="threads" id="threads"><div class="empty">아직 받은 DM이 없어요.</div></div>
+  </aside>
+  <section class="main">
+    <div class="main-empty" id="mainEmpty"><b>내 메시지</b>왼쪽에서 대화를 골라주세요.</div>
+    <div class="chat-h" id="chatH" hidden><button class="back" id="back" aria-label="목록">‹</button><span class="av" id="chatAv"></span><div class="who"><b id="chatName"></b><small id="chatSub"></small></div></div>
+    <div class="msgs" id="msgs" hidden></div>
+    <form class="bar" id="bar" hidden><textarea id="txt" rows="1" maxlength="2000" placeholder="메시지 입력..."></textarea><button id="send" disabled>보내기</button></form>
+  </section>
+</div>
+
+<script type="module">
+import { firebaseConfig } from './firebase-config.js';
+const V = '10.12.2';
+const $ = (id) => document.getElementById(id);
+const gateMsg = $('gateMsg');
+
+if (!firebaseConfig) {
+  gateMsg.textContent = 'dm/firebase-config.js에 Firebase 설정값을 넣으면 열려요.';
+} else {
+  const [appM, authM, fs] = await Promise.all([
+    import(`https://www.gstatic.com/firebasejs/${V}/firebase-app.js`),
+    import(`https://www.gstatic.com/firebasejs/${V}/firebase-auth.js`),
+    import(`https://www.gstatic.com/firebasejs/${V}/firebase-firestore.js`)
+  ]);
+  const app = appM.initializeApp(firebaseConfig);
+  const auth = authM.getAuth(app), db = fs.getFirestore(app);
+  const provider = new authM.GoogleAuthProvider();
+
+  $('login').onclick = () => authM.signInWithPopup(auth, provider).catch((e) => { gateMsg.textContent = '로그인 실패: ' + e.code; gateMsg.className = 'err'; });
+  $('logout').onclick = () => authM.signOut(auth);
+
+  let offThreads = null, offMsgs = null, offThread = null, cur = null, beat = null, firstLoad = true;
+  const known = new Map();
+  const label = (id, t) => (t && t.name) || ('방문자 #' + id.slice(0, 4).toUpperCase());
+  const ago = (ts) => {
+    if (!ts) return ''; const s = (Date.now() - ts.toMillis()) / 1000;
+    if (s < 60) return '방금'; if (s < 3600) return Math.floor(s / 60) + '분'; if (s < 86400) return Math.floor(s / 3600) + '시간';
+    if (s < 604800) return Math.floor(s / 86400) + '일'; return Math.floor(s / 604800) + '주';
+  };
+  const initial = (n) => (n || '방').trim().charAt(0).toUpperCase();
+
+  // 알림
+  const nb = $('notifyBtn');
+  if ('Notification' in window && Notification.permission === 'default') { nb.hidden = false; nb.onclick = () => Notification.requestPermission().then(() => { nb.hidden = true; }); }
+  function ping(name, text) {
+    if (!document.hidden && cur) return;
+    if ('Notification' in window && Notification.permission === 'granted') { try { new Notification(name, { body: text, icon: '../img/apple-touch-icon.png' }); } catch (e) {} }
+  }
+  function title(unread) { document.title = (unread ? '(' + unread + ') ' : '') + '받은 DM함 · syndrome_official'; }
+
+  authM.onAuthStateChanged(auth, (u) => {
+    if (offThreads) { offThreads(); offThreads = null; }
+    if (!u || u.isAnonymous) { $('app').hidden = true; $('gate').hidden = false; $('login').hidden = false; gateMsg.className = ''; gateMsg.textContent = 'syndrome_official 관리자만 볼 수 있어요.'; return; }
+    $('gate').hidden = true; $('app').hidden = false;
+    offThreads = fs.onSnapshot(fs.query(fs.collection(db, 'threads'), fs.orderBy('updatedAt', 'desc')), (snap) => {
+      const box = $('threads'); box.textContent = ''; let unread = 0;
+      if (snap.empty) box.innerHTML = '<div class="empty">아직 받은 DM이 없어요.</div>';
+      snap.forEach((d) => {
+        const t = d.data(), n = t.unreadAdmin || 0; unread += n ? 1 : 0;
+        const prev = known.get(d.id);
+        if (!firstLoad && t.lastFrom === 'v' && t.updatedAt && (!prev || prev < t.updatedAt.toMillis()) && cur !== d.id) ping(label(d.id, t), t.last || '');
+        if (t.updatedAt) known.set(d.id, t.updatedAt.toMillis());
+        const b = document.createElement('button');
+        b.className = 'thr' + (n ? ' unread' : '') + (cur === d.id ? ' on' : '');
+        b.innerHTML = '<span class="av"></span><span class="t"><b></b><span></span></span><i class="dot"></i>';
+        b.querySelector('.av').textContent = initial(t.name);
+        b.querySelector('b').textContent = label(d.id, t);
+        b.querySelector('.t span').textContent = (t.lastFrom === 'a' ? '나: ' : '') + (t.last || '') + ' · ' + ago(t.updatedAt);
+        b.onclick = () => open(d.id);
+        box.appendChild(b);
+      });
+      firstLoad = false;
+      $('count').textContent = unread ? '읽지 않음 ' + unread : '';
+      title(unread);
+    }, (e) => { $('app').hidden = true; $('gate').hidden = false; gateMsg.className = 'err'; gateMsg.textContent = '이 계정은 관리자가 아니에요. (' + (u.email || '') + ')'; });
+  });
+
+  function open(id) {
+    cur = id; $('app').classList.add('open');
+    document.querySelectorAll('.thr').forEach((b) => b.classList.remove('on'));
+    $('mainEmpty').hidden = true; $('chatH').hidden = false; $('msgs').hidden = false; $('bar').hidden = false;
+    if (offMsgs) offMsgs(); if (offThread) offThread(); clearInterval(beat);
+    const ref = fs.doc(db, 'threads', id);
+    const mark = () => fs.updateDoc(ref, { unreadAdmin: 0, adminReadAt: fs.serverTimestamp(), adminSeenAt: fs.serverTimestamp() }).catch(() => {});
+    mark(); beat = setInterval(() => { if (!document.hidden) fs.updateDoc(ref, { adminSeenAt: fs.serverTimestamp() }).catch(() => {}); }, 60000);
+    let thread = null, typingT = null;
+    const msgs = $('msgs'), typing = document.createElement('div');
+    typing.className = 'typing'; typing.innerHTML = '<i></i><i></i><i></i>';
+    offThread = fs.onSnapshot(ref, (d) => {
+      thread = d.data() || {};
+      $('chatAv').textContent = initial(thread.name); $('chatName').textContent = label(id, thread);
+      $('chatSub').textContent = '3번 인스타 DM · ' + (thread.createdAt ? thread.createdAt.toDate().toLocaleDateString('ko-KR') + ' 시작' : '');
+      clearTimeout(typingT);
+      const t = thread.visitorTyping ? thread.visitorTyping.toMillis() : 0, on = Date.now() - t < 5000;
+      typing.classList.toggle('show', on); if (on) { msgs.scrollTop = msgs.scrollHeight; typingT = setTimeout(() => typing.classList.remove('show'), 5000 - (Date.now() - t)); }
+      if (thread.unreadAdmin && !document.hidden) mark();
+    });
+    offMsgs = fs.onSnapshot(fs.query(fs.collection(db, 'threads', id, 'messages'), fs.orderBy('at', 'asc')), (snap) => {
+      msgs.textContent = ''; let day = '';
+      snap.forEach((d) => {
+        const m = d.data(), dt = m.at ? m.at.toDate() : new Date(), dd = dt.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' });
+        if (dd !== day) { day = dd; const s = document.createElement('div'); s.className = 'day'; s.textContent = dd; msgs.appendChild(s); }
+        const b = document.createElement('div'); b.className = 'bub ' + m.from; b.textContent = m.text;
+        b.title = dt.toLocaleTimeString('ko-KR', { hour: 'numeric', minute: '2-digit' });
+        msgs.appendChild(b);
+      });
+      msgs.appendChild(typing); msgs.scrollTop = msgs.scrollHeight;
+    });
+    $('txt').focus();
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && cur) fs.updateDoc(fs.doc(db, 'threads', cur), { unreadAdmin: 0, adminReadAt: fs.serverTimestamp(), adminSeenAt: fs.serverTimestamp() }).catch(() => {}); });
+  $('back').onclick = () => { $('app').classList.remove('open'); cur = null; if (offMsgs) offMsgs(); if (offThread) offThread(); clearInterval(beat); };
+
+  const txt = $('txt'), send = $('send'); let lastT = 0;
+  txt.addEventListener('input', () => {
+    send.disabled = !txt.value.trim(); txt.style.height = 'auto'; txt.style.height = txt.scrollHeight + 'px';
+    if (cur && Date.now() - lastT > 2500) { lastT = Date.now(); fs.updateDoc(fs.doc(db, 'threads', cur), { adminTyping: fs.serverTimestamp() }).catch(() => {}); }
+  });
+  txt.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing && matchMedia('(pointer: fine)').matches) { e.preventDefault(); $('bar').requestSubmit(); } });
+  $('bar').addEventListener('submit', async (e) => {
+    e.preventDefault(); const text = txt.value.trim(); if (!text || !cur) return;
+    txt.value = ''; txt.style.height = 'auto'; send.disabled = true;
+    const ref = fs.doc(db, 'threads', cur);
+    try {
+      await fs.addDoc(fs.collection(db, 'threads', cur, 'messages'), { from: 'a', text, at: fs.serverTimestamp() });
+      await fs.updateDoc(ref, { last: text.slice(0, 120), lastFrom: 'a', updatedAt: fs.serverTimestamp(), adminTyping: null, adminReadAt: fs.serverTimestamp(), adminSeenAt: fs.serverTimestamp() });
+    } catch (err) { console.error(err); txt.value = text; send.disabled = false; alert('전송 실패: ' + (err.code || err)); }
+  });
+}
+</script>
+</body>
+</html>
